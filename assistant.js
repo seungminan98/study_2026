@@ -1,45 +1,60 @@
 /* ───────────────────────────────────────────────────────────
-   학습 도우미 위젯 (Gemini 2.5 Flash + 음성 읽기 · 브라우저 전용)
-   - API 키는 이 브라우저(localStorage)에만 저장됩니다. 저장소/서버로 전송되지 않습니다.
-   - 현재 페이지 본문(.wrap)을 읽어 근거로 답하고, 답변·페이지를 소리로 읽어줍니다.
-   - 음성은 브라우저 내장 음성합성(Web Speech)을 사용해 무료·키 불필요입니다.
+   학습 도우미 위젯 (Gemini 2.5 Flash + 읽어주기 · 브라우저 전용)
+   기능: ① 페이지 내용 기반 질의응답  ② 단락 클릭 읽어주기(읽기 모드)
+        ③ 음성 선택 + 속도 조절(부드러운 음성)
+   - API 키는 이 브라우저(localStorage)에만 저장됩니다.
+   - 음성은 브라우저 내장 음성합성(Web Speech). 엣지(Edge)에서 한국어 자연 음성이 가장 부드럽습니다.
    사용: 각 페이지 </body> 앞에  <script src="../assistant.js" defer></script>
    ─────────────────────────────────────────────────────────── */
 (function () {
   "use strict";
 
-  var MODEL = "gemini-2.5-flash";          // 무료 등급. 한도가 더 넉넉하려면 "gemini-2.5-flash-lite"
+  var MODEL = "gemini-2.5-flash";
   var LS_KEY = "gemini_api_key";
   var LS_AUTO = "ai_tts_auto";
+  var LS_VOICE = "ai_tts_voice";
+  var LS_RATE = "ai_tts_rate";
   var KEY_URL = "https://aistudio.google.com/apikey";
-  var history = [];                         // {role, parts:[{text}]}
-  var autoRead = (function () { try { return localStorage.getItem(LS_AUTO) === "1"; } catch (e) { return false; } })();
+  var READ_SEL = ".wrap h1, .wrap h2, .wrap h3, .wrap p, .wrap li, .wrap td, .wrap blockquote, .wrap .key, .wrap .star, .wrap .hot, .wrap .qhead, .wrap .exp";
 
-  /* ---------- 음성 읽기 (브라우저 내장, 무료·키 불필요) ---------- */
+  var history = [];
+  var autoRead = lsGet(LS_AUTO) === "1";
+  var prefs = {
+    voiceURI: lsGet(LS_VOICE) || "",
+    rate: parseFloat(lsGet(LS_RATE)) || 0.95
+  };
+
+  /* ===================== 음성 (TTS) ===================== */
   var tts = {
-    voice: null,
-    init: function () {
-      if (!this.supported()) return;
-      var pick = function () {
-        var vs = speechSynthesis.getVoices() || [];
-        tts.voice = vs.filter(function (v) { return /ko/i.test(v.lang); })[0] || null;
-      };
-      pick();
-      if (!tts.voice) speechSynthesis.onvoiceschanged = pick;
-    },
     supported: function () { return "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined"; },
+    list: function () { return this.supported() ? (speechSynthesis.getVoices() || []) : []; },
+    koVoices: function () { return this.list().filter(function (v) { return /ko/i.test(v.lang); }); },
+    best: function () {
+      var ko = this.koVoices();
+      var pref = ko.filter(function (v) { return /natural|online|neural|sunhi|injoon|heami|yuna|google/i.test(v.name); });
+      return (pref[0] || ko[0] || null);
+    },
+    chosen: function () {
+      var all = this.list();
+      if (prefs.voiceURI) {
+        var m = all.filter(function (v) { return v.voiceURI === prefs.voiceURI; })[0];
+        if (m) return m;
+      }
+      return this.best();
+    },
     speaking: function () { return this.supported() && (speechSynthesis.speaking || speechSynthesis.pending); },
     stop: function () { if (this.supported()) speechSynthesis.cancel(); },
     speak: function (text, onend) {
-      if (!this.supported()) return;
+      if (!this.supported()) { if (onend) onend(); return; }
       this.stop();
+      var v = this.chosen();
       var parts = ttsChunk(text), i = 0;
       var next = function () {
         if (i >= parts.length) { if (onend) onend(); return; }
         var u = new SpeechSynthesisUtterance(parts[i++]);
         u.lang = "ko-KR";
-        if (tts.voice) u.voice = tts.voice;
-        u.rate = 1; u.pitch = 1;
+        if (v) u.voice = v;
+        u.rate = prefs.rate; u.pitch = 1;
         u.onend = next; u.onerror = next;
         speechSynthesis.speak(u);
       };
@@ -59,11 +74,15 @@
     return out;
   }
 
-  /* ---------- 스타일 ---------- */
+  /* ===================== 스타일 ===================== */
+  var FONT = "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif";
   var css = [
-    ".ai-fab{position:fixed;right:20px;bottom:20px;z-index:9998;font:600 14px/1 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;background:#1a1a1a;color:#fff;border:none;border-radius:24px;padding:12px 18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.22);}",
-    ".ai-fab:hover{background:#000;}",
-    ".ai-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 40px);background:#fff;border:1px solid #1a1a1a;border-radius:10px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.25);font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;}",
+    ".ai-fabwrap{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;flex-direction:column;gap:8px;align-items:flex-end;}",
+    ".ai-fab{font:600 14px/1 " + FONT + ";color:#fff;border:none;border-radius:24px;padding:11px 16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.22);}",
+    ".ai-fab.chat{background:#1a1a1a;}",
+    ".ai-fab.read{background:#fff;color:#1a1a1a;border:1px solid #1a1a1a;}",
+    ".ai-fab:hover{filter:brightness(.92);}",
+    ".ai-panel{position:fixed;right:20px;bottom:20px;z-index:9999;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 40px);background:#fff;border:1px solid #1a1a1a;border-radius:10px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.25);font-family:" + FONT + ";}",
     ".ai-panel.open{display:flex;}",
     ".ai-head{display:flex;align-items:center;gap:6px;padding:11px 12px;border-bottom:1px solid #e2e2e2;}",
     ".ai-head b{font-size:15px;margin-right:2px;}",
@@ -93,20 +112,38 @@
     ".ai-key a{color:#1a1a1a;}",
     ".ai-key input{width:100%;font:inherit;font-size:13px;border:1px solid #ccc;border-radius:6px;padding:8px 10px;margin:8px 0;}",
     ".ai-key button{font:inherit;font-weight:600;border:1px solid #1a1a1a;background:#1a1a1a;color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;}",
-    "@media (max-width:480px){.ai-panel{height:calc(100vh - 24px);bottom:12px;right:12px;}}"
+    /* 읽기 모드 */
+    ".ai-rmode .ai-rblock{cursor:pointer;transition:background .12s;border-radius:3px;}",
+    ".ai-rmode .ai-rblock:hover{background:#eef3ff;box-shadow:0 0 0 2px #dbe6ff;}",
+    ".ai-rblock.ai-reading{background:#fff3b0 !important;box-shadow:0 0 0 3px #ffe87a;}",
+    ".ai-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:10000;display:none;align-items:center;gap:6px;background:#1a1a1a;color:#fff;border-radius:30px;padding:8px 12px;box-shadow:0 6px 24px rgba(0,0,0,.3);font-family:" + FONT + ";font-size:13px;max-width:calc(100vw - 24px);flex-wrap:wrap;justify-content:center;}",
+    ".ai-bar.show{display:flex;}",
+    ".ai-bar button{background:none;border:none;color:#fff;font-size:16px;cursor:pointer;padding:4px 7px;border-radius:50%;line-height:1;}",
+    ".ai-bar button:hover{background:rgba(255,255,255,.16);}",
+    ".ai-bar .lbl{color:#bbb;font-size:11px;margin-left:4px;}",
+    ".ai-bar select{font:inherit;font-size:12px;background:#2a2a2a;color:#fff;border:1px solid #444;border-radius:5px;padding:3px 5px;max-width:140px;}",
+    ".ai-bar input[type=range]{width:84px;vertical-align:middle;}",
+    ".ai-bar .seg{display:flex;align-items:center;gap:4px;padding:0 4px;}",
+    ".ai-hint{position:fixed;left:50%;transform:translateX(-50%);bottom:70px;z-index:10000;display:none;background:#fff;color:#333;border:1px solid #1a1a1a;border-radius:8px;padding:8px 12px;font:13px " + FONT + ";box-shadow:0 4px 16px rgba(0,0,0,.18);}",
+    ".ai-hint.show{display:block;}",
+    "@media (max-width:480px){.ai-panel{height:calc(100vh - 24px);bottom:12px;right:12px;}.ai-bar select{max-width:96px;}}"
   ].join("\n");
   var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 
-  /* ---------- DOM ---------- */
-  var fab = el("button", "ai-fab", "🅰 철학 도우미");
-  fab.title = "이 페이지 내용을 바탕으로 질문하거나, 소리로 읽어줍니다";
-  document.body.appendChild(fab);
+  /* ===================== FAB + 패널 ===================== */
+  var fabwrap = el("div", "ai-fabwrap");
+  var readFab = el("button", "ai-fab read", "📖 읽어주기");
+  readFab.title = "단락을 클릭하면 그 지점부터 읽어줍니다";
+  var chatFab = el("button", "ai-fab chat", "🅰 철학 도우미");
+  chatFab.title = "이 페이지 내용으로 질문하기";
+  if (tts.supported()) fabwrap.appendChild(readFab);
+  fabwrap.appendChild(chatFab);
+  document.body.appendChild(fabwrap);
 
   var panel = el("div", "ai-panel");
   panel.innerHTML =
     '<div class="ai-head"><b>철학과 인성 도우미</b>' +
     '<span class="sp"></span>' +
-    '<button class="ai-ic" data-act="page" title="이 페이지 소리내어 읽기 / 멈추기">📖</button>' +
     '<button class="ai-ic" data-act="auto" title="답변 자동 읽기 켜기/끄기">🔊</button>' +
     '<button class="ai-ic" data-act="key" title="API 키 설정">⚙</button>' +
     '<button class="ai-ic" data-act="clear" title="대화 지우기">↺</button>' +
@@ -121,40 +158,145 @@
   var msgs = panel.querySelector("#aiMsgs");
   var input = panel.querySelector("#aiIn");
   var sendBtn = panel.querySelector("#aiSend");
-  var pageBtn = panel.querySelector('[data-act="page"]');
   var autoBtn = panel.querySelector('[data-act="auto"]');
 
-  fab.onclick = function () { panel.classList.add("open"); fab.style.display = "none"; boot(); input.focus(); };
-  panel.querySelector('[data-act="close"]').onclick = function () { tts.stop(); panel.classList.remove("open"); fab.style.display = ""; };
+  chatFab.onclick = function () { panel.classList.add("open"); fabwrap.style.display = "none"; boot(); input.focus(); };
+  panel.querySelector('[data-act="close"]').onclick = function () { tts.stop(); panel.classList.remove("open"); fabwrap.style.display = ""; };
   panel.querySelector('[data-act="clear"]').onclick = function () { tts.stop(); history = []; msgs.innerHTML = ""; greeting(); };
   panel.querySelector('[data-act="key"]').onclick = function () { keyForm(); };
   sendBtn.onclick = send;
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
-  });
+  input.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
   input.addEventListener("input", function () { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 120) + "px"; });
-
-  if (!tts.supported()) { pageBtn.style.display = "none"; autoBtn.style.display = "none"; }
-  pageBtn.onclick = function () {
-    if (tts.speaking()) { tts.stop(); pageBtn.classList.remove("on"); return; }
-    pageBtn.classList.add("on");
-    tts.speak(readContext(), function () { pageBtn.classList.remove("on"); });
-  };
   autoBtn.classList.toggle("on", autoRead);
   autoBtn.onclick = function () {
-    autoRead = !autoRead;
-    try { localStorage.setItem(LS_AUTO, autoRead ? "1" : "0"); } catch (e) {}
-    autoBtn.classList.toggle("on", autoRead);
-    if (!autoRead) tts.stop();
+    autoRead = !autoRead; lsSet(LS_AUTO, autoRead ? "1" : "0");
+    autoBtn.classList.toggle("on", autoRead); if (!autoRead) tts.stop();
   };
 
-  /* ---------- 동작 ---------- */
-  function boot() {
-    if (msgs.childElementCount) return;
-    if (!getKey()) { keyForm(); } else { greeting(); }
-  }
+  readFab.onclick = function () { reader.toggle(); };
+
+  /* ===================== 읽기 모드 (read-along) ===================== */
+  var reader = {
+    on: false, blocks: [], idx: -1, playing: false, bar: null, voiceSel: null,
+    build: function () {
+      this.bar = el("div", "ai-bar");
+      this.bar.innerHTML =
+        '<button data-r="prev" title="이전 단락">⏮</button>' +
+        '<button data-r="play" title="재생/일시정지">▶</button>' +
+        '<button data-r="next" title="다음 단락">⏭</button>' +
+        '<button data-r="stop" title="멈추고 닫기">⏹</button>' +
+        '<span class="seg"><span class="lbl">속도</span><input type="range" min="0.7" max="1.3" step="0.05" data-r="rate"></span>' +
+        '<span class="seg"><span class="lbl">음성</span><select data-r="voice"></select></span>';
+      document.body.appendChild(this.bar);
+      var self = this;
+      this.bar.querySelector('[data-r="prev"]').onclick = function () { self.jump(self.idx - 1); };
+      this.bar.querySelector('[data-r="next"]').onclick = function () { self.jump(self.idx + 1); };
+      this.bar.querySelector('[data-r="stop"]').onclick = function () { self.toggle(); };
+      this.playBtn = this.bar.querySelector('[data-r="play"]');
+      this.playBtn.onclick = function () { self.playing ? self.pause() : self.resume(); };
+      var rate = this.bar.querySelector('[data-r="rate"]');
+      rate.value = prefs.rate;
+      rate.oninput = function () { prefs.rate = parseFloat(this.value); lsSet(LS_RATE, this.value); };
+      this.voiceSel = this.bar.querySelector('[data-r="voice"]');
+      this.voiceSel.onchange = function () {
+        prefs.voiceURI = this.value; lsSet(LS_VOICE, this.value);
+        if (self.playing) self.speakCurrent();   // 즉시 새 음성으로
+      };
+      this.fillVoices();
+      if (tts.supported()) speechSynthesis.onvoiceschanged = function () { self.fillVoices(); };
+    },
+    fillVoices: function () {
+      if (!this.voiceSel) return;
+      var ko = tts.koVoices();
+      var list = ko.length ? ko : tts.list();
+      var cur = prefs.voiceURI || (tts.best() && tts.best().voiceURI) || "";
+      this.voiceSel.innerHTML = list.map(function (v) {
+        var sel = v.voiceURI === cur ? " selected" : "";
+        var nm = v.name.replace(/Microsoft\s|Google\s/i, "").replace(/\s*\(.*?\)/, "");
+        return '<option value="' + v.voiceURI + '"' + sel + '>' + escapeHtml(nm) + (/ko/i.test(v.lang) ? "" : " · " + v.lang) + "</option>";
+      }).join("");
+      if (!list.length) this.voiceSel.innerHTML = '<option>기본 음성</option>';
+    },
+    collect: function () {
+      var nodes = document.querySelectorAll(READ_SEL);
+      var arr = [];
+      nodes.forEach(function (n) {
+        if (n.closest(".ai-panel") || n.closest(".ai-bar")) return;
+        var txt = (n.innerText || n.textContent || "").trim();
+        if (txt.length < 2) return;
+        // 표 안 헤더(짧은 라벨)도 포함하되 너무 짧은 토막은 제외
+        n.classList.add("ai-rblock");
+        n.dataset.rIdx = arr.length;
+        arr.push({ el: n, text: txt });
+      });
+      this.blocks = arr;
+    },
+    toggle: function () {
+      this.on ? this.disable() : this.enable();
+    },
+    enable: function () {
+      if (!tts.supported()) { alert("이 브라우저는 음성 읽기를 지원하지 않아요. (엣지/크롬 권장)"); return; }
+      if (!this.bar) this.build();
+      this.collect();
+      if (!this.blocks.length) { alert("이 페이지에서 읽을 본문을 찾지 못했어요."); return; }
+      this.on = true;
+      document.body.classList.add("ai-rmode");
+      this.bar.classList.add("show");
+      readFab.classList.add("on"); readFab.textContent = "📖 읽기 끄기";
+      this.fillVoices();
+      hint("문단을 클릭하면 그 부분부터 읽어요. ▶로 처음부터 재생.");
+      var self = this;
+      this._click = function (e) {
+        var b = e.target.closest(".ai-rblock");
+        if (!b || !document.body.contains(b)) return;
+        if (b.closest(".ai-panel") || b.closest(".ai-bar")) return;
+        var i = parseInt(b.dataset.rIdx, 10);
+        if (!isNaN(i)) { e.preventDefault(); self.start(i); }
+      };
+      document.addEventListener("click", this._click, true);
+    },
+    disable: function () {
+      this.on = false; this.playing = false; tts.stop();
+      document.body.classList.remove("ai-rmode");
+      if (this.bar) this.bar.classList.remove("show");
+      readFab.classList.remove("on"); readFab.textContent = "📖 읽어주기";
+      this.clearHi();
+      if (this._click) document.removeEventListener("click", this._click, true);
+      this.blocks.forEach(function (b) { b.el.classList.remove("ai-rblock"); delete b.el.dataset.rIdx; });
+      this.blocks = []; this.idx = -1;
+    },
+    start: function (i) { this.idx = i; this.playing = true; this.setPlay(true); this.speakCurrent(); },
+    speakCurrent: function () {
+      var b = this.blocks[this.idx]; if (!b) { this.finish(); return; }
+      this.highlight(b.el);
+      var self = this;
+      tts.speak(b.text, function () { if (self.playing) self.jump(self.idx + 1, true); });
+    },
+    jump: function (i, auto) {
+      if (i < 0) i = 0;
+      if (i >= this.blocks.length) { this.finish(); return; }
+      this.idx = i;
+      if (this.playing || !auto) { this.playing = true; this.setPlay(true); this.speakCurrent(); }
+    },
+    pause: function () { this.playing = false; this.setPlay(false); tts.stop(); },
+    resume: function () { if (this.idx < 0) this.idx = 0; this.playing = true; this.setPlay(true); this.speakCurrent(); },
+    finish: function () { this.playing = false; this.setPlay(false); this.clearHi(); },
+    setPlay: function (p) { if (this.playBtn) this.playBtn.textContent = p ? "⏸" : "▶"; },
+    highlight: function (node) {
+      this.clearHi();
+      node.classList.add("ai-reading");
+      node.scrollIntoView({ behavior: "smooth", block: "center" });
+    },
+    clearHi: function () {
+      var prev = document.querySelector(".ai-rblock.ai-reading");
+      if (prev) prev.classList.remove("ai-reading");
+    }
+  };
+
+  /* ===================== 채팅 동작 ===================== */
+  function boot() { if (msgs.childElementCount) return; getKey() ? greeting() : keyForm(); }
   function greeting() {
-    note("이 페이지(<b>" + escapeHtml(document.title) + "</b>)의 내용을 읽고 답해드려요. 답변 옆 <b>🔊 듣기</b>나 위쪽 <b>📖</b>(페이지 읽기)로 소리도 들을 수 있어요. 예: “칸트와 공리주의 차이”, “이 표 핵심만 요약”, “예상문제 3개 내줘”.");
+    note("이 페이지(<b>" + escapeHtml(document.title) + "</b>)의 내용을 읽고 답해드려요. 답변 옆 <b>🔊 듣기</b>로 음성도 가능. 페이지를 통째로 들으려면 오른쪽 아래 <b>📖 읽어주기</b>를 누르세요.");
   }
   function keyForm() {
     msgs.innerHTML = "";
@@ -170,37 +312,30 @@
     var ki = box.querySelector("#aiKeyIn");
     ki.value = getKey() || "";
     box.querySelector("#aiKeySave").onclick = function () {
-      var v = ki.value.trim();
-      if (!v) { ki.focus(); return; }
-      try { localStorage.setItem(LS_KEY, v); } catch (e) {}
-      msgs.innerHTML = ""; greeting();
+      var v = ki.value.trim(); if (!v) { ki.focus(); return; }
+      lsSet(LS_KEY, v); msgs.innerHTML = ""; greeting();
     };
     ki.focus();
   }
-
   function send() {
-    var q = input.value.trim();
-    if (!q) return;
+    var q = input.value.trim(); if (!q) return;
     if (!getKey()) { keyForm(); return; }
     input.value = ""; input.style.height = "auto";
     addMsg("user", q);
     var thinking = addMsg("model", "…", true);
     setBusy(true);
-    ask(q).then(function (ans) {
-      thinking.remove();
-      addMsg("model", ans);
-    }).catch(function (err) {
-      thinking.remove();
-      note("⚠ " + escapeHtml(err.message || String(err)));
-      if (/API key|키|401|403|400/i.test(err.message || "")) {
-        var b = el("div", "ai-key");
-        b.innerHTML = '<button id="aiReKey">API 키 다시 입력</button>';
-        msgs.appendChild(b); scrollDown();
-        b.querySelector("#aiReKey").onclick = keyForm;
-      }
-    }).finally(function () { setBusy(false); });
+    ask(q).then(function (ans) { thinking.remove(); addMsg("model", ans); })
+      .catch(function (err) {
+        thinking.remove();
+        note("⚠ " + escapeHtml(err.message || String(err)));
+        if (/API key|키|401|403|400/i.test(err.message || "")) {
+          var b = el("div", "ai-key");
+          b.innerHTML = '<button id="aiReKey">API 키 다시 입력</button>';
+          msgs.appendChild(b); scrollDown();
+          b.querySelector("#aiReKey").onclick = keyForm;
+        }
+      }).finally(function () { setBusy(false); });
   }
-
   function ask(question) {
     var ctx = readContext();
     var sys =
@@ -208,64 +343,46 @@
       "아래 페이지 내용을 1차 근거로 삼아 한국어로 간결하고 정확하게 답해. " +
       "페이지에 없는 내용은 일반 지식으로 보충하되 그럴 때는 (페이지 밖 보충)이라고 짧게 표시해. " +
       "추측이나 불확실한 건 분명히 밝혀. 불릿은 꼭 필요할 때만 쓰고 보통은 문장으로 답해. " +
-      "소리로 읽힐 수 있으니 표나 기호 나열보다 자연스러운 문장을 우선해.\n\n" +
+      "소리로 읽힐 수 있으니 자연스러운 문장을 우선해.\n\n" +
       "[페이지 제목]\n" + document.title + "\n\n[페이지 내용]\n" + ctx;
-
     history.push({ role: "user", parts: [{ text: question }] });
     if (history.length > 12) history = history.slice(-12);
-
-    var url = "https://generativelanguage.googleapis.com/v1beta/models/" +
-      MODEL + ":generateContent?key=" + encodeURIComponent(getKey());
-    var body = {
-      systemInstruction: { parts: [{ text: sys }] },
-      contents: history,
-      generationConfig: { temperature: 0.3, maxOutputTokens: 1024 }
-    };
-    return fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    }).then(function (res) {
-      return res.json().then(function (data) {
-        if (!res.ok) {
-          var m = (data && data.error && data.error.message) || ("요청 실패 (" + res.status + ")");
-          throw new Error(m);
-        }
-        return data;
+    var url = "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent?key=" + encodeURIComponent(getKey());
+    var body = { systemInstruction: { parts: [{ text: sys }] }, contents: history, generationConfig: { temperature: 0.3, maxOutputTokens: 1024 } };
+    return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) { throw new Error((data && data.error && data.error.message) || ("요청 실패 (" + res.status + ")")); }
+          return data;
+        });
+      }).then(function (data) {
+        var c = data.candidates && data.candidates[0];
+        var text = c && c.content && c.content.parts ? c.content.parts.map(function (p) { return p.text || ""; }).join("") : "";
+        if (!text) text = (c && c.finishReason === "SAFETY") ? "(안전 필터로 답변이 제한되었어요.)" : "(응답이 비어 있어요. 다시 시도해 주세요.)";
+        history.push({ role: "model", parts: [{ text: text }] });
+        return text;
       });
-    }).then(function (data) {
-      var c = data.candidates && data.candidates[0];
-      var text = c && c.content && c.content.parts
-        ? c.content.parts.map(function (p) { return p.text || ""; }).join("")
-        : "";
-      if (!text) {
-        if (c && c.finishReason === "SAFETY") text = "(안전 필터로 답변이 제한되었어요. 질문을 바꿔보세요.)";
-        else text = "(응답이 비어 있어요. 다시 시도해 주세요.)";
-      }
-      history.push({ role: "model", parts: [{ text: text }] });
-      return text;
-    });
   }
 
-  /* ---------- 헬퍼 ---------- */
+  /* ===================== 헬퍼 ===================== */
   function readContext() {
     var root = document.querySelector(".wrap") || document.body;
-    var t = (root.innerText || root.textContent || "").replace(/\n{3,}/g, "\n\n").trim();
-    return t.slice(0, 14000);
+    return (root.innerText || root.textContent || "").replace(/\n{3,}/g, "\n\n").trim().slice(0, 14000);
   }
-  function getKey() { try { return localStorage.getItem(LS_KEY); } catch (e) { return null; } }
+  function getKey() { return lsGet(LS_KEY); }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function setBusy(b) { sendBtn.disabled = b; sendBtn.textContent = b ? "…" : "전송"; }
   function addMsg(role, text, raw) {
     var m = el("div", "ai-m " + role);
-    var who = el("div", "who", role === "user" ? "나" : "도우미");
+    m.appendChild(el("div", "who", role === "user" ? "나" : "도우미"));
     var bub = el("div", "bub"); bub.innerHTML = raw ? escapeHtml(text) : fmt(text);
-    m.appendChild(who); m.appendChild(bub);
+    m.appendChild(bub);
     if (role === "model" && !raw && tts.supported()) {
       m.appendChild(listenBtn(text));
       if (autoRead) tts.speak(text);
     }
-    msgs.appendChild(m); scrollDown();
-    return m;
+    msgs.appendChild(m); scrollDown(); return m;
   }
   function listenBtn(text) {
     var wrap = el("div", "ai-listen");
@@ -279,14 +396,16 @@
   }
   function note(html) { var n = el("div", "ai-note"); n.innerHTML = html; msgs.appendChild(n); scrollDown(); }
   function scrollDown() { msgs.scrollTop = msgs.scrollHeight; }
+  function hint(text) {
+    var h = document.querySelector(".ai-hint") || el("div", "ai-hint");
+    if (!h.parentNode) document.body.appendChild(h);
+    h.textContent = text; h.classList.add("show");
+    setTimeout(function () { h.classList.remove("show"); }, 3500);
+  }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function escapeHtml(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
-  function fmt(s) {
-    return escapeHtml(s)
-      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-      .replace(/`([^`]+)`/g, "<strong>$1</strong>");
-  }
+  function fmt(s) { return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<strong>$1</strong>"); }
 
-  tts.init();
+  // 음성 목록 미리 로드
+  if (tts.supported()) { tts.list(); speechSynthesis.onvoiceschanged = function () { tts.list(); }; }
 })();
-/* v1 */
