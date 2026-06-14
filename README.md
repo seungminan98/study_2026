@@ -12,6 +12,8 @@ GitHub Pages로 공개되어 있습니다 → **https://<사용자이름>.github
 
 ```
 index.html                  ← 전체 허브 (과목 선택)
+├─ studio/                  학습 스튜디오 (Phase 0 · 로컬 우선 학습 도구, 베타)
+│   └─ index.html           주제→AI 생성→IndexedDB 저장→읽어주기→페이지 기반 질문·메모
 ├─ philosophy/              철학과 인성
 │   ├─ index.html           과목 허브
 │   ├─ 03-summary.html      시대별 요약 + 세부 설명
