@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미래사회와 신소재 — 과제 문제 &amp; 모범답안</title>
+<meta name="description" content="미래사회와 신소재 9~14주차 과제 문항과 강의자료 기반 모범답안. 과제 그대로 출제 대비.">
+<style>
+  :root{ --ink:#1a1a1a; --sub:#555; --line:#dcdcdc; --faint:#f5f5f5; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.7;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:46px 24px 130px;}
+  .crumb{font-size:14px;margin:0 0 22px;}
+  .crumb a{color:#555;text-decoration:none;border-bottom:1px solid #bbb;}
+  h1{font-size:25px;font-weight:700;margin:0 0 6px;}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 16px;}
+  .bar{display:flex;gap:10px;align-items:center;margin:0 0 18px;flex-wrap:wrap;}
+  button.ctl{font:inherit;font-size:14px;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:6px 14px;border-radius:5px;cursor:pointer;}
+  button.ctl:hover{background:var(--faint);}
+  .note{border-left:3px solid var(--ink);background:var(--faint);padding:12px 16px;margin:14px 0;font-size:15px;}
+  h2{font-size:18px;font-weight:700;margin:34px 0 6px;padding-top:12px;border-top:2px solid var(--ink);}
+  h2 .tag{font-size:12px;font-weight:600;color:var(--sub);border:1px solid var(--line);border-radius:3px;padding:1px 7px;margin-left:8px;}
+  .q{border-top:1px solid #eee;padding:16px 0 4px;}
+  .q:first-of-type{border-top:none;}
+  .qq{font-weight:700;margin-bottom:8px;}
+  .reveal{font:inherit;font-size:13px;border:1px solid var(--ink);background:#fff;border-radius:5px;padding:4px 11px;cursor:pointer;}
+  .reveal:hover{background:var(--faint);}
+  .ans{display:none;border-left:3px solid var(--ink);background:var(--faint);padding:10px 14px;margin:8px 0 2px;font-size:15.5px;}
+  .ans.show{display:block;}
+  .ans b{font-weight:700;}
+  .ans .cau{display:block;margin-top:6px;color:var(--sub);font-size:13.5px;}
+  @media print{
+    body{font-size:10.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .crumb,.bar,.reveal{display:none !important;} .wrap{padding:0;max-width:none;}
+    .ans{display:block !important;} h2{break-after:avoid;} .q{break-inside:avoid;}
+    .ai-fabwrap,.ai-panel,.ai-bar,.ai-hint{display:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="index.html">← 목록으로</a></p>
+  <h1>과제 문제 &amp; 모범답안</h1>
+  <p class="lead">교수님이 과제 내용을 그대로 출제하신다고 해서, 실제 과제 9~14주차 문항에 강의자료 기반 모범답안을 달았습니다. ‘정답 보기’로 자가 점검하세요. (인쇄 시 모든 답이 보입니다)</p>
+
+  <div class="bar">
+    <button class="ctl" id="all">전체 정답 보기</button>
+    <button class="ctl" id="reset">접기</button>
+  </div>
+
+  <div class="note">
+    <b>주차 매칭 메모</b><br>
+    · <b>9주차 과제(ESG·Reuse·Recycle)</b>는 별도 9주차 강의자료가 아니라 <b>12주차(배터리 리싸이클링)</b> 내용과 연결됩니다. 그쪽 강의자료를 근거로 답했습니다.<br>
+    · <b>14주차</b>는 별도 강의자료 없이 앞 주차 개념(복합재료 10주차 · 스웰링 11주차 · TGV 13주차)에서 출제됩니다.
+  </div>
+
+  <div id="quiz"></div>
+</div>
+
+<script src="../assistant.js" defer></script>
+<script>
+const DATA = [
+ {sec:"9주차 과제", tag:"→ 12주차 강의자료"},
+ {q:"문제 1) ESG의 정의를 설명하라. (강의자료 참조)",
+  a:"<b>ESG = Environmental(환경)·Social(사회)·Governance(지배구조).</b> 기업을 재무 성과만이 아니라 환경 책임·사회적 책임·투명한 지배구조 같은 <b>비재무적 가치</b>로 평가하는 지표. 신소재에서는 폐자원 재활용·CO₂ 저감 등 환경(E) 측면과 직결된다.<span class='cau'>※ 슬라이드에 ‘ESG’ 단어의 직접 정의는 없어 일반 정의로 답함 — 교수님 강의 표현을 한 번 확인 권장.</span>"},
+ {q:"문제 2) 소재 Reuse(재사용)의 사례를 설명하라. (강의자료 참조)",
+  a:"폐소재를 분해하지 않고 <b>다른 용도로 그대로 다시 쓰는 것.</b> 예) 수명이 다한 <b>전기차(EV) 폐배터리를 ESS(에너지저장장치)로 재사용</b>. 흐름: E-waste 수거 → 검사 → 분류 → Reuse."},
+ {q:"문제 3) 소재 Recycle(재활용)의 사례를 설명하라.",
+  a:"폐배터리·폐가전을 <b>분해해 금속원소를 추출·재투입하는 것</b>(도시광산, Urban Mining). 예) <b>폐 리튬이온전지에서 Co·Li·Ni을 회수</b>. 광석 대비 자원 농도가 매우 높고, 재활용 시 평균 ~30.2 kg CO₂-eq/kWh의 이산화탄소를 저감한다."},
+
+ {sec:"10주차 과제", tag:"복합재료·디스플레이"},
+ {q:"1. 복합재료 유형 중 라미네이트란 무엇인가?",
+  a:"<b>섬유강화 시트(fiber-reinforced sheet)를 0°/90° 방향으로 적층·접착한 구조 복합재료.</b> 장점은 방향별 물성을 균형 있게 만들어 <b>이방성(anisotropy)을 해소</b>하는 것."},
+ {q:"2. ITO란 무엇인가?",
+  a:"<b>Indium Tin Oxide(In+Sn+O)</b> — 인듐·주석·산소로 된 <b>세라믹계 투명전도성 소재</b>로 디스플레이 투명전극에 사용. 변형 시 균열이 생기고 인듐(In)이 비싸, 대체 소재(그래핀·CNT·메탈메시·메탈나노와이어)가 필요하다."},
+ {q:"3. 그래핀의 정의를 설명하라.",
+  a:"<b>탄소 원자가 육각형 격자로 2차원 평면을 이룬, 원자 1개 두께(0.2nm)의 막.</b> 탄소의 동소체이며 높은 전자이동도·열전도도·강도(강철의 200배)와 가시광선 투과율 97.7%(투명)를 가진다."},
+
+ {sec:"11주차 과제", tag:"디스플레이·배터리"},
+ {q:"1. 투명 디스플레이 소재에 요구되는 2개의 중요 특성은 낮은 전기저항과 높은 (     )이다.",
+  a:"<b>광투과도</b> (높은 광투과도). ※ 전기저항과 광투과도는 반비례 경향이 있다."},
+ {q:"2. 폴더블 폰에 타당한 기계적 성질 시험법은 cyclic bending test이다. O/X로 표시하고, 틀리면 맞게 수정하라.",
+  a:"<b>O (맞음).</b> 폴더블폰은 반복적으로 접히므로, 그 사용환경을 모사하는 <b>반복 굽힘(cyclic bending) 시험</b>이 타당하다."},
+ {q:"3. 리튬이온전지의 4개 주요 구성 요소는 양극, 음극, (   ), 전해질이다.",
+  a:"<b>분리막(separator).</b> 다공성 고분자(PP) 막으로, 리튬이온이 기공을 통과해 양극-음극을 이동한다."},
+
+ {sec:"12주차 과제", tag:"배터리·리싸이클링"},
+ {q:"1. 리튬이온전지의 음극소재로 현재 가장 많이 사용되는 소재는 (    )이다.",
+  a:"<b>그라파이트(흑연, graphite).</b> (Si 합금은 충방전 시 크랙, 리튬 금속은 발화 위험)"},
+ {q:"2. 배터리의 비행기내 사용 환경을 모사하여 안전성을 시험하는 것을 (   )시험이라 한다.",
+  a:"<b>고도(저압) 시뮬레이션 시험</b> — 항공 운송 안전규격 <b>UN 38.3</b>의 ‘Altitude simulation’에 해당하며, 비행 고도의 저기압 환경을 모사한다.<span class='cau'>※ 슬라이드에는 안전규격명(UN38.3 등)만 있고 이 시험의 정확한 한글 명칭이 명시돼 있지 않음 — 강의 노트의 교수님 표현을 꼭 확인하세요.</span>"},
+ {q:"3. 광석으로부터 금속원소를 얻는 것을 mining이라 한다면, 가전제품·폐배터리 리싸이클링을 통해 금속 원소를 추출하는 것을 (   )이라 한다.",
+  a:"<b>도시광산(Urban Mining).</b>"},
+
+ {sec:"13주차 과제", tag:"반도체·나노소재"},
+ {q:"1. 반도체 인터포저의 정의를 간단히 설명하라.",
+  a:"<b>IC(집적회로) 칩과 PCB(기판) 사이에 삽입해 회로 폭 차이를 완충하며 연결하는 미세회로 기판.</b> 고밀도로 집적된 HBM(고대역폭 메모리) 연결에 쓰인다."},
+ {q:"2. Quantum dot의 정의를 간단히 설명하라.",
+  a:"<b>크기 수 nm의 초미세 반도체 입자</b>로, <b>크기에 따라 색(빛의 파장)이 달라지는 양자효과</b>를 갖는 디스플레이·광학 소재(LED→OLED→QLED)."},
+ {q:"3. 3D 프린팅 방식 중 분말적층용융 방식의 원리를 간단히 설명하라.",
+  a:"<b>분말 형태의 소재 위에 레이저를 주사해 분말을 용융시켜 한 층씩 적층</b>하는 방식(PBF, Powder Bed Fusion / SLS). 금속 산업 부품에 쓰이며 표면연마 등 후가공이 필요하다."},
+
+ {sec:"14주차 과제", tag:"종합·복습"},
+ {q:"1. 복합재료(Composite)의 구성 요소인 matrix와 dispersed phase의 역할을 간단히 설명하시오.",
+  a:"<b>matrix(기지상)</b> = 전체 구조를 이루는 연속된 바탕상. <b>dispersed phase(분산상)</b> = 기지에 분산되어 강도·인성 등 성능을 향상시키는 상. <span class='cau'>(10주차 복합재료)</span>"},
+ {q:"2. 스웰링(swelling) 현상을 간단히 설명하시오.",
+  a:"<b>배터리 전해액이 산화하며 발생한 가스(C₂H₄ 등)로 배터리가 부푸는 현상.</b> 폭발의 전단계로 위험하다. <span class='cau'>(11주차 배터리)</span>"},
+ {q:"3. TGV 기술을 간단히 설명하시오.",
+  a:"<b>Through Glass Via(유리관통비아)</b> — 유리 기판에 초미세 구멍을 뚫고 Cu로 채워(hole 가공 + Cu filling) 전기적 연결을 구현하는 기술. 낮은 열팽창·미세배선으로 고성능 AI 반도체 인터포저에 적합. <span class='cau'>(13주차 반도체)</span>"}
+];
+
+const quiz = document.getElementById("quiz");
+DATA.forEach(function(d){
+  if(d.sec){ var h=document.createElement("h2"); h.innerHTML=d.sec+(d.tag?'<span class="tag">'+d.tag+'</span>':''); quiz.appendChild(h); return; }
+  var w=document.createElement("div"); w.className="q";
+  var qq=document.createElement("div"); qq.className="qq"; qq.textContent=d.q; w.appendChild(qq);
+  var btn=document.createElement("button"); btn.className="reveal"; btn.textContent="정답 보기";
+  var ans=document.createElement("div"); ans.className="ans"; ans.innerHTML="<b>답</b> — "+d.a;
+  btn.onclick=function(){ ans.classList.toggle("show"); btn.textContent=ans.classList.contains("show")?"답 숨기기":"정답 보기"; };
+  w.appendChild(btn); w.appendChild(ans); quiz.appendChild(w);
+});
+document.getElementById("all").onclick=function(){ document.querySelectorAll(".ans").forEach(function(a){a.classList.add("show");}); document.querySelectorAll(".reveal").forEach(function(b){b.textContent="답 숨기기";}); };
+document.getElementById("reset").onclick=function(){ document.querySelectorAll(".ans").forEach(function(a){a.classList.remove("show");}); document.querySelectorAll(".reveal").forEach(function(b){b.textContent="정답 보기";}); };
+</script>
+</body>
+</html>

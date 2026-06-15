@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미래사회와 신소재 — 강의 전체 정리 (줄글)</title>
+<meta name="description" content="미래사회와 신소재 10~14주차 강의자료 기반 줄글 정리 — 복합재료·디스플레이·배터리·리싸이클링·반도체·나노소재·3D프린팅.">
+<style>
+  :root{ --ink:#1a1a1a; --sub:#555; --line:#dcdcdc; --faint:#f5f5f5; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:48px 24px 140px;}
+  .crumb{font-size:14px;margin:0 0 24px;}
+  .crumb a{color:#555;text-decoration:none;border-bottom:1px solid #bbb;}
+  h1{font-size:27px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em;}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 22px;}
+  nav{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:0 0 8px;
+    font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px;}
+  nav a{color:var(--sub);text-decoration:none;}
+  nav a:hover{color:var(--ink);text-decoration:underline;}
+  h2{font-size:21px;font-weight:700;margin:48px 0 4px;padding-top:12px;border-top:2px solid var(--ink);}
+  h2 .wk{display:block;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--sub);font-weight:600;margin-bottom:4px;}
+  h3{font-size:16px;font-weight:700;margin:24px 0 4px;color:#333;}
+  p{margin:13px 0;}
+  em{font-style:normal;font-weight:700;background:#fff3b0;padding:0 2px;}
+  .top{font-size:13px;color:var(--sub);text-decoration:none;float:right;margin-top:14px;}
+  .note{border-left:3px solid var(--ink);background:var(--faint);padding:12px 16px;margin:16px 0;font-size:15px;}
+  @media print{
+    body{font-size:10.5pt;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    nav,.crumb,.top{display:none !important;} .wrap{padding:0;max-width:none;}
+    h2{break-after:avoid;break-inside:avoid;} p{orphans:3;widows:3;}
+    .ai-fabwrap,.ai-panel,.ai-bar,.ai-hint{display:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+  <p class="crumb"><a href="index.html">← 목록으로</a></p>
+  <h1>강의 전체 정리 · 줄글</h1>
+  <p class="lead">10~13주차 강의자료(PDF)를 줄글로 정리했습니다. 14주차는 별도 강의자료 없이 과제가 앞 주차에서 출제됩니다(아래 참조). 노란 강조는 시험에 잘 나오는 핵심어.</p>
+
+  <nav>
+    <a href="#w10">10 복합재료·웨어러블</a>
+    <a href="#w11">11 디스플레이·배터리</a>
+    <a href="#w12">12 배터리소재·리싸이클링</a>
+    <a href="#w13">13 반도체·나노·3D프린팅</a>
+    <a href="#w14">14 종합(과제)</a>
+  </nav>
+
+  <h2 id="w10"><span class="wk">Week 10</span>복합재료 · 웨어러블 · 투명전도성 필름<a href="#top" class="top">↑ 맨 위</a></h2>
+  <h3>복합재료(Composite)</h3>
+  <p><em>복합재료(Composite)</em>는 더 유용한 성능 조합을 얻기 위해 두 가지 이상의 소재를 병합한 새로운 소재다. 예로 고분자의 유연성·경량성에 세라믹의 강도를 더하면 ‘고분자기지 세라믹 분산강화 복합재료(PMC)’가 된다. 구성은 <em>기지상(matrix)</em>과 <em>분산상(dispersed phase)</em>으로 나뉜다. <em>matrix</em>는 전체 구조를 이루며 연속된 바탕이 되는 상이고(금속기지 MMC·세라믹기지 CMC·고분자기지 PMC), <em>dispersed phase</em>는 기지의 성능을 향상시키는 역할을 한다(형태: 입자·섬유·구조). 효과는 MMC는 항복강도 증가, CMC는 파괴인성 증가, PMC는 탄성계수·인장강도 증가다.</p>
+  <p>복합재료의 유형은 <em>입자강화(particle)·섬유강화(fiber)·구조(structural)</em>로 나뉜다. 입자강화 예로는 강(ferrite 기지+cementite 입자), 초경합금 WC/Co(연성 Co 기지+경질 WC 입자), 콘크리트(자갈+모래+시멘트; 모래가 자갈 틈을 채움), 타이어(고무+탄소)가 있다. 복합재료의 탄성계수는 <em>혼합물의 법칙(rule of mixtures): Ec = VmEm + VpEp</em>로 계산한다(V=부피분율, E=탄성계수). 섬유 소재는 <em>휘스커(whisker, 가늘고 긴 단결정, 가장 강하나 비쌈)</em>, <em>섬유(fiber, 다결정 또는 비정질; PMC·CMC에 사용)</em>, <em>와이어(wire, 금속)</em>로 구분되며, 정렬(aligned) 방식은 방향에 따라 물성이 다른 <em>이방성(anisotropy)</em>을 갖는다.</p>
+  <p>구조 복합재료에는 <em>라미네이트(laminate)</em>와 <em>샌드위치 패널(sandwich panel)</em>이 있다. <em>라미네이트</em>는 섬유강화 시트를 0°/90° 방향으로 적층·접착한 것으로, 장점은 방향별 물성이 균형을 이뤄 <em>이방성을 해소</em>하는 것이다. <em>샌드위치 패널</em>은 낮은 밀도의 <em>벌집(honeycomb)</em> 코어를 두 face sheet 사이에 배치한 것으로, 경량이면서 굽힘강성(bending stiffness)이 우수하다. 종합하면 CMC는 세라믹 대비 인성·연성이 증가하고, PMC는 고분자 대비 탄성계수가 금속 수준으로 증가한다.</p>
+  <h3>웨어러블 기기</h3>
+  <p><em>웨어러블 기기</em>는 신체에 착용 가능한 IT 기기(통신·센서·디스플레이·배터리 등)로 초연결(hyperconnected) 시스템의 핵심이다. 형태별로 휴대형(악세서리)·일체형(직물/의류)·신체부착형·생체이식형으로, 용도별로 헬스케어/의료·피트니스/웰빙·인포테인먼트·군사/산업으로 나뉜다. 특수 사용환경의 위해 인자로는 인체 접촉·장시간 노출에 따른 <em>전자파흡수율(SAR) 증가</em>(거리의 제곱에 반비례, 발암·두통), 유해물질 피부접촉·발열 화상, 기계적 변형(피로)에 의한 소재 미세손상·전자기 마이그레이션(배터리 쇼트·발열·폭발)이 있다. 안전 평가는 독일 TÜV-SÜD, 미국 UL 등이 주도한다.</p>
+  <h3>투명전도성 필름(도입)</h3>
+  <p>플렉서블 디스플레이는 Durable→Bendable→Flexible/Foldable→Disposable 세대로 발전한다. 전통적 투명전극 <em>ITO(Indium Tin Oxide, In+Sn+O)</em>는 세라믹 소재라 변형 시 균열이 생기고 인듐(In)이 비싸, 대체 소재(그래핀·CNT·메탈 메시·메탈 나노와이어)가 필요하다. <em>그래핀(graphene)</em>은 탄소 원자가 육각형 격자로 2차원 평면을 이룬, 원자 1개 두께(0.2nm)의 막으로 탄소의 <em>동소체</em>(CNT·흑연·다이아몬드·풀러렌과 화학조성은 같고 배열이 다름)다. 구리보다 100배 이상 전기가 잘 통하는 <em>높은 전자이동도</em>, 다이아몬드의 2배인 <em>높은 열전도도</em>, 강철의 200배 강도, 영률 ~1.0 TPa, 가시광선 투과율 97.7%(투명)를 갖는다.</p>
+
+  <h2 id="w11"><span class="wk">Week 11</span>투명 디스플레이 소재 · 배터리 기초<a href="#top" class="top">↑ 맨 위</a></h2>
+  <h3>투명전도성 필름과 기계적 시험</h3>
+  <p>디스플레이 필름에 요구되는 핵심 특성은 <em>낮은 전기저항 + 높은 광투과도</em>다. 저항은 <em>면저항(sheet resistance, Ω/sq)</em>으로 표시한다. 전도성 금속(예: 은 나노와이어 AgNW)을 많이 코팅할수록 면저항은 낮아지지만 광투과도는 낮아져, <em>저항과 광투과도는 반비례</em> 경향이 있다. AgNW는 PET 필름 위에 코팅하며, 와이어의 접점(touched junction)을 통해 전류가 흐른다. 소재별로 저항은 Cu mesh가 가장 낮고, 광투과도는 AgNW가 가장 높다.</p>
+  <p>플렉서블 디스플레이의 기계적 시험법은 국제규격 <em>IEC 62175</em>로 정의되며 cyclic bending·static bending·combined bending·rolling·torsion·tension 등이 있다. 핵심 원칙은 <em>소재의 실제 사용환경을 모사할 수 있는 시험을 선택</em>하는 것이다(예: <em>폴더블폰 → cyclic bending test</em>). 이 규격은 ‘개념 정의 규격’이라 시험방법의 핵심만 정성적으로 정의하고 시험체 크기·속도 등은 정하지 않아, 기관마다 조건이 달라 데이터 상호비교·장비 표준화가 어렵다(금속 인장시험 규격은 상세 규정). 전자재료 피로시험은 보통 수 Hz(1Hz) 수준에서 수행한다. 필름의 <em>고장 기준은 저항변화율 10%(ΔR/R₀ = 0.1)</em>이며, 변형량(strain)이 4~5%까지 늘면 저항변화율이 ~10%에 도달한다. 일반적으로 <em>비틀림(torsion)이 굽힘(bending)보다 가혹한 조건</em>이라, 굽힘에서 정상이어도 비틀림에서의 정상작동은 보장되지 않는다(고장 원인: 균열 crack·분절 fragmentation).</p>
+  <h3>배터리 소재 기초</h3>
+  <p>전지는 <em>1차 전지</em>(충방전 불가, 1회성: 망간·알칼라인·리튬전지)와 <em>2차 전지</em>(충방전 반복 가능)로 나뉜다. 2차 전지는 방전 시 리튬이온이 음극→양극으로, 충전 시 양극→음극으로 이동한다. 대표는 <em>리튬이온전지(Li-ion, 2.7~3.8V, 액체 전해액, 가장 널리 쓰이나 안전성 이슈)</em>이고, 그 외 리튬이온폴리머(고체 폴리머 전해질)·납축전지(자동차, 2.1V)·니켈카드뮴(NiCd)·니켈수소(Ni-MH)가 있다. <em>메모리 효과</em>는 완전 방전되지 않은 상태에서 충전을 반복하면 최대 용량이 줄어드는 현상으로 <em>니켈카드뮴 전지에서 나타나고 리튬이온전지는 없다</em>. <em>스웰링(swelling)</em>은 전해액이 산화하며 발생한 가스(C₂H₄ 등)로 배터리가 부푸는 현상으로 폭발의 전단계다. 용량은 <em>A·V = W</em>로 계산하며(예: 5Ah×3.7V=18.5Wh), <em>항공기 기내 반입은 100Wh 이하</em>가 기준이다. 대형 전지로는 EV용(약 400V, 셀→모듈→팩 구조, 모듈 없는 Cell to Pack)과 ESS(에너지저장장치)용이 있다.</p>
+  <p><em>리튬이온전지 내부 구조</em>는 네 요소다. <em>양극(cathode)</em>은 Al foil 위에 LCO(LiCoO₂) 등 양극활물질이 코팅된 구조, <em>음극(anode)</em>은 Cu foil 위에 그라파이트(흑연) 분말이 코팅된 구조, <em>분리막(separator)</em>은 다공성 고분자 막(폴리프로필렌 PP)으로 리튬이온이 기공을 통과하게 한다, <em>전해액(electrolyte)</em>은 리튬이온이 양극-음극 사이를 이동하는 혼합 용액이다. 충전은 리튬이온이 양극→음극, 방전은 음극→양극으로 이동하며 전류를 생성한다. 충방전 수명은 보통 초기 용량 대비 80%까지의 사이클 수로 본다.</p>
+
+  <h2 id="w12"><span class="wk">Week 12</span>배터리 전극 소재 · 안전성 · 리싸이클링<a href="#top" class="top">↑ 맨 위</a></h2>
+  <h3>전극 소재</h3>
+  <p><em>양극소재는 배터리의 용량과 전압을 결정</em>한다. 종류는 LCO(LiCoO₂)·LiMn₂O₄·LiNiO₂·<em>NCM(Ni-Co-Mn 산화물, 전기차용)</em>·LFP(LiFePO₄, 리튬인산철)가 있다. 원소별 역할은 <em>Ni=에너지밀도·주행거리, Co=부식방지·안전성(원가의 20%, 그래서 고함량 Ni 양극 개발), Mn=안전성</em>이다. <em>음극소재는 충전속도와 수명에 영향</em>을 주며, 현재 가장 많이 쓰는 것은 <em>그라파이트(흑연)</em>다. Si 합금 계열은 충방전 시 크랙이 생기고, 리튬 금속은 발화 안전성 문제가 있다. 수명 단축의 원인은 리튬이온이 음극 표면에 석출·축적되어 양극으로 돌아가지 못하는 것이며, 충방전 반복으로 양극활물질에 균열이 생긴다.</p>
+  <h3>안전성 시험·모니터링</h3>
+  <p>배터리 안전시험 규격으로 KC 62133, UN 38.3, KS 등이 있고, 항목은 전기적 오용(과전류)·기계적 오용(충격)·열적 오용 등이다. <em>플렉서블 배터리의 핵심 안전 이슈는 반복 기계적 변형(피로)</em>으로, 변형이 누적되면 <em>분리막이 뚫려(puncturing) 쇼트가 발생</em>하고(발열·발화) 음극 표면에 리튬이 석출된다. 손상 모니터링 기법으로 <em>음향방출(Acoustic Emission, AE)</em>이 있다 — 열화 손상 시 재료 내부에서 방출되는 초음파 신호를 AE 센서로 받아, 펄스 지속시간·진폭·주파수 성분을 패턴 인식해 손상(활물질 균열·바인더 균열·가스 버블링 등)을 검출한다. 이를 통해 이상 징후를 진단·예지하는 기술이 <em>PHM(건전성 예측 및 관리)</em>이다.</p>
+  <h3>배터리 리싸이클링 (9주차 과제와 연결)</h3>
+  <p>폐배터리·폐가전에서 자원을 회수하는 흐름은 ‘E-waste 수거 → 검사 → 분류 → 재사용/재활용’이다. 광석에서 금속을 캐는 mining에 빗대어, 폐제품에서 금속원소를 추출하는 것을 <em>도시광산(Urban Mining)</em>이라 한다. <em>재사용(Reuse)</em>은 폐배터리를 그대로 다른 용도로 다시 쓰는 것(예: EV 폐배터리를 ESS로 전용), <em>재활용(Recycle)</em>은 분해해 Co·Li·Ni 같은 금속원소를 추출·재투입하는 것이다. spent battery의 단위 자원 가치는 광석 대비 매우 높고(약 10³배 농축), 폐 리튬이온전지를 재활용하면 평균 약 <em>30.2 kg CO₂-eq/kWh</em>의 이산화탄소를 저감한다. 이런 <em>재사용·재활용·환경 가치</em>가 9주차 과제의 ESG·Reuse·Recycle 문항과 직접 이어진다.</p>
+
+  <h2 id="w13"><span class="wk">Week 13</span>반도체 소재 · 나노소재 · 3D 프린팅<a href="#top" class="top">↑ 맨 위</a></h2>
+  <h3>반도체 패키징 인터포저</h3>
+  <p><em>인터포저(interposer)</em>는 IC(집적회로) 칩과 PCB(기판) 사이에 삽입해 회로 폭 차이를 완충하며 연결하는 미세회로 기판으로, 고밀도로 집적된 <em>HBM(고대역폭 메모리, 2013년 SK하이닉스 개발)</em> 연결에 쓰인다(입출력 단자 bump가 촘촘). 인터포저 소재는 <em>TSV(실리콘관통비아) → TGV(유리관통비아, Through Glass Via)</em>로 발전한다. 유리는 낮은 열전도율·대면적화가 장점이나 미세균열 파손이 단점이다. <em>TGV</em>는 유리 기판에 초미세 구멍을 뚫고 Cu로 채워(hole 가공 + Cu filling) 전기적 연결을 구현하는 기술로, 낮은 열팽창계수(열변형 적음)·미세 배선·우수한 전력효율·신호 무결성을 가져 고성능 GPU·AI 반도체에 필수다. 홀 형성은 레이저(열변형·크랙 가능), 습식 식각(미세하나 균일성 어려움), 건식 식각(플라즈마) 방식이 있고, 유리-Cu의 열팽창 차이로 충진·접합 시 균열 가능성이 있다.</p>
+  <h3>나노소재(nano material)</h3>
+  <p><em>나노소재</em>는 1~100nm 크기의 소재로 벌크와 달리 독특한 물리·화학·전기적 특성을 가진다. 성질 개선 방법은 (1) 새로운 화학성분 개발, (2) 재료계 크기를 나노 레벨로 축소해 성질을 변화시키는 것이다. 차원에 따라 <em>0D(나노분말, 양자점 QD)·1D(나노와이어·나노튜브·나노로드)·2D(박막·나노플레이트)·3D(나노복합재료)</em>로 분류한다. <em>퀀텀 닷(Quantum Dot, 양자점)</em>은 크기 수 nm의 초미세 반도체 입자로, <em>크기에 따라 색(빛의 파장)이 달라지는 양자효과</em>를 갖는 디스플레이·광학 소재다(LED→OLED→QLED, 양자점 개발 3인 2023 노벨 화학상). 나노 크기에서는 표면적/부피 비가 커져 반응성이 좋아지고(촉매), <em>녹는점은 낮아지며</em>(예: 금은 5nm 이하에서 급격히 하락), 결함 포함 확률이 낮아 <em>강도·경도는 벌크보다 높아진다</em>.</p>
+  <h3>3D 프린팅(적층 제조)</h3>
+  <p><em>적층 제조(Additive Manufacturing)</em>는 소재를 층층이 쌓는 <em>bottom-up</em> 공정(절삭의 top-down과 대비)으로, ‘소재+공정+프린터’의 정합성이 중요하다. 장점은 부품 수·제작 공정 감소, 무게·부피 절감(수송기 부품에 유리), 기존 공정으로 불가능한 형상 제작이다. 단점은 긴 작업 시간, 높은 비용, 낮은 내구성·신뢰성(금속 제품은 기공 다량), 전용 소재 필요다. 방식(ASTM/ISO 분류)은 재료압출(ME, FDM/FFF, 고분자)·광중합(PP, SLA/DLP)·재료분사(MJ, Polyjet)·접착제분사(BJ, 모래/건축)·<em>분말적층용융(PBF, Power Bed Fusion)</em>·고에너지직접조사(DED)·시트라미네이션이 있다. <em>PBF(분말적층용융)</em>는 분말 형태 소재 위에 레이저를 주사해 분말을 용융시켜 한 층씩 적층하는 방식(SLS)으로 금속 산업 부품에 쓰이며 표면연마 등 후가공이 필요하다.</p>
+
+  <h2 id="w14"><span class="wk">Week 14</span>종합 — 과제는 앞 주차에서 출제<a href="#top" class="top">↑ 맨 위</a></h2>
+  <div class="note">14주차는 별도 강의 PDF 없이, 과제 문항이 <b>앞 주차 핵심 개념의 복습</b>으로 출제됩니다.<br>① <b>복합재료의 matrix / dispersed phase</b> → 10주차(복합재료): matrix=연속된 바탕상, dispersed phase=성능을 향상시키는 분산상.<br>② <b>스웰링(swelling)</b> → 11주차(배터리): 전해액 산화로 가스가 생겨 배터리가 부푸는 현상(폭발 전단계).<br>③ <b>TGV 기술</b> → 13주차(반도체): 유리 기판에 미세 구멍을 뚫고 Cu로 채워 전기 연결을 구현하는 유리관통비아 기술.</div>
+  <p>즉 14주차 시험 대비는 위 세 개념을 10·11·13주차에서 다시 확인하면 됩니다. 모범답안은 ‘과제 문제·답’ 페이지에 정리해 두었습니다.</p>
+
+  <p class="lead" style="margin-top:30px;">출처: 미래사회와 신소재 강의자료(PDF) 10~13주차. 개인 학습용 정리입니다.</p>
+</div>
+<script src="../assistant.js" defer></script>
+</body>
+</html>
