@@ -131,10 +131,11 @@
   var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 
   /* ===================== FAB + 패널 ===================== */
+  var AILABEL = (typeof window !== "undefined" && window.AI_ASSISTANT_LABEL) ? window.AI_ASSISTANT_LABEL : "철학과 인성";
   var fabwrap = el("div", "ai-fabwrap");
   var readFab = el("button", "ai-fab read", "📖 읽어주기");
   readFab.title = "단락을 클릭하면 그 지점부터 읽어줍니다";
-  var chatFab = el("button", "ai-fab chat", "🅰 철학 도우미");
+  var chatFab = el("button", "ai-fab chat", "🅰 " + AILABEL + " 도우미");
   chatFab.title = "이 페이지 내용으로 질문하기";
   if (tts.supported()) fabwrap.appendChild(readFab);
   fabwrap.appendChild(chatFab);
@@ -142,7 +143,7 @@
 
   var panel = el("div", "ai-panel");
   panel.innerHTML =
-    '<div class="ai-head"><b>철학과 인성 도우미</b>' +
+    '<div class="ai-head"><b>' + AILABEL + ' 도우미</b>' +
     '<span class="sp"></span>' +
     '<button class="ai-ic" data-act="auto" title="답변 자동 읽기 켜기/끄기">🔊</button>' +
     '<button class="ai-ic" data-act="key" title="API 키 설정">⚙</button>' +
@@ -338,8 +339,9 @@
   }
   function ask(question) {
     var ctx = readContext();
+    var subj = (typeof window !== "undefined" && window.AI_SUBJECT) ? window.AI_SUBJECT : "철학과 인성(동서양 인성론)";
     var sys =
-      "너는 이 웹페이지의 학습 도우미야. 과목은 철학과 인성(동서양 인성론). " +
+      "너는 이 웹페이지의 학습 도우미야. 과목은 " + subj + ". " +
       "아래 페이지 내용을 1차 근거로 삼아 한국어로 간결하고 정확하게 답해. " +
       "페이지에 없는 내용은 일반 지식으로 보충하되 그럴 때는 (페이지 밖 보충)이라고 짧게 표시해. " +
       "추측이나 불확실한 건 분명히 밝혀. 불릿은 꼭 필요할 때만 쓰고 보통은 문장으로 답해. " +
