@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>위험물기능장 · 35개 핵심요점 암기노트</title>
+<meta name="description" content="위험물기능장 필기/실기 대비 — 류별 성질·지정수량·시설기준 35개 핵심요점 압축 암기노트.">
+<style>
+  :root{ --ink:#1a1a1a; --sub:#555; --line:#d9d9d9; --faint:#f6f6f6; --accent:#b3261e; --blue:#1456a0; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#fff;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 22px 120px;}
+  .crumb{font-size:14px;margin:0 0 24px;}
+  .crumb a{color:#555;text-decoration:none;border-bottom:1px solid #bbb;}
+  .kicker{font-size:13px;letter-spacing:.2em;color:var(--sub);text-transform:uppercase;margin:0 0 8px;}
+  h1{font-size:28px;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;}
+  .lead{color:var(--sub);font-size:15px;margin:0 0 18px;}
+  .toolbar{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:18px 0 28px;z-index:5;
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .toolbar input{flex:1;min-width:160px;border:1px solid var(--line);border-radius:6px;padding:8px 12px;font-size:15px;}
+  .toolbar button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 12px;font-size:14px;cursor:pointer;color:#333;}
+  .toolbar button:hover{background:var(--faint);}
+  .toc{border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:0 0 30px;background:var(--faint);}
+  .toc h2{font-size:14px;letter-spacing:.05em;color:var(--sub);text-transform:uppercase;margin:0 0 10px;}
+  .toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:24px;font-size:14px;}
+  .toc li{margin:0 0 5px;break-inside:avoid;}
+  .toc a{color:#333;text-decoration:none;border-bottom:1px solid transparent;}
+  .toc a:hover{border-bottom-color:#999;}
+  section.item{border-top:2px solid var(--ink);padding:22px 0 8px;margin:0 0 10px;scroll-margin-top:70px;}
+  section.item > h2{font-size:20px;font-weight:700;margin:0 0 12px;display:flex;align-items:baseline;gap:10px;}
+  section.item > h2 .no{font-size:14px;font-weight:700;color:#fff;background:var(--ink);border-radius:5px;padding:2px 9px;flex:none;}
+  h3{font-size:16px;font-weight:700;margin:18px 0 6px;color:#222;}
+  p{margin:6px 0;}
+  ul{margin:6px 0 12px;padding-left:20px;}
+  li{margin:3px 0;}
+  b{font-weight:700;}
+  .key{background:#fff3cd;padding:0 3px;border-radius:2px;}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:10px 0 16px;}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--faint);font-weight:700;white-space:nowrap;}
+  td.c,th.c{text-align:center;white-space:nowrap;}
+  .formula{font-family:"Cambria Math",Georgia,serif;background:var(--faint);border:1px solid var(--line);
+    border-radius:6px;padding:8px 12px;margin:8px 0;font-size:15px;}
+  .note{border-left:3px solid var(--blue);background:#f0f6fc;padding:8px 14px;margin:10px 0;font-size:14px;border-radius:0 6px 6px 0;}
+  .warn{border-left:3px solid var(--accent);background:#fdf1f0;padding:8px 14px;margin:10px 0;font-size:14px;border-radius:0 6px 6px 0;}
+  .tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:4px;padding:1px 7px;color:#555;margin:0 4px 4px 0;}
+  .tag.red{border-color:#e0a0a0;color:#a02020;background:#fdf1f0;}
+  .tag.blue{border-color:#a0bce0;color:#1456a0;background:#f0f6fc;}
+  .foot{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--sub);font-size:13px;}
+  .top{position:fixed;right:18px;bottom:18px;background:var(--ink);color:#fff;border:none;border-radius:50%;
+    width:44px;height:44px;font-size:18px;cursor:pointer;opacity:.85;}
+  .top:hover{opacity:1;}
+  .hide{display:none !important;}
+  mark{background:#fff3a0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="crumb"><a href="index.html">← 위험물기능장 필기</a></p>
+  <p class="kicker">Hazardous Materials · Core Summary</p>
+  <h1>35개 핵심요점 암기노트</h1>
+  <p class="lead">「위험물기능장」 2권 부록 I 「필기+실기 핵심요점」 35개 항목을 압축한 막판 암기노트. 류별 성질·지정수량·시설기준의 빈출 수치를 한눈에. <b>주황 형광</b>은 가장 자주 나오는 핵심 숫자/키워드.</p>
+
+  <div class="toolbar">
+    <input id="search" type="text" placeholder="검색: 지정수량, 보유공지, 황린, 분말소화…">
+    <button id="expand">모두 펼치기</button>
+    <button id="clear">검색 지우기</button>
+  </div>
+
+  <div class="toc">
+    <h2>목차 · 35 핵심요점</h2>
+    <ol id="toc"></ol>
+  </div>
+
+  <div id="content"></div>
+
+  <div class="foot">
+    출처: 「위험물기능장」 2권 부록 I · 필기+실기 핵심요점(35개). 류별 품명·지정수량은 「위험물안전관리법 시행령 별표1」 기준으로 교차 검증함. 화학식은 유니코드 표기(H₂O, O₂, KMnO₄ 등). 학습용 정리 자료입니다.
+  </div>
+</div>
+<button class="top" onclick="scrollTo(0,0)">↑</button>
+
+<script>
+/* 각 핵심요점: {n,t,html} — html은 본문. 검색·목차는 자동 생성 */
+const ITEMS = [
+{n:1,t:`기초화학 (계산의 기본 공식)`,html:`
+<h3>밀도·비중·기체밀도</h3>
+<div class="formula">밀도 ρ = 질량 m / 부피 V　(g/cm³, g/L)</div>
+<div class="formula">증기비중 = (그 기체 분자량) ÷ (공기 평균분자량 <b class="key">29</b>) &nbsp;(정확히 28.84)</div>
+<div class="formula">기체밀도 = 분자량 M ÷ <b class="key">22.4</b> (g/L, 0℃·1atm 표준상태)</div>
+<h3>기체 법칙</h3>
+<div class="formula">보일: P₁V₁ = P₂V₂ &nbsp;(T 일정)</div>
+<div class="formula">샤를: V₁/T₁ = V₂/T₂ &nbsp;(P 일정, T는 절대온도 K=℃+273)</div>
+<div class="formula">보일–샤를: P₁V₁/T₁ = P₂V₂/T₂</div>
+<h3>이상기체 상태방정식</h3>
+<div class="formula">PV = nRT = (w/M)RT　→　분자량 <b>M = wRT / PV</b></div>
+<p>기체상수 <b class="key">R = 0.082</b> atm·L/(mol·K). 절대온도 K = ℃ + 273.</p>
+<div class="note">증기비중 자주 출제: 분자량 ÷ 29. 예) 이황화탄소 CS₂(76)→2.6, 아세톤(58)→2.0, 다이에틸에터(74)→2.55.</div>
+`},
+
+{n:2,t:`화재예방 — 연소이론`,html:`
+<h3>연소의 요소</h3>
+<p>연소의 <b>3요소</b> = 가연물 + 산소공급원 + 점화원. 여기에 <b>연쇄반응</b>을 더하면 <b class="key">4요소</b>(연소의 4면체).</p>
+<h3>연소의 형태(고체·액체)</h3>
+<table><tr><th>형태</th><th>설명·예</th></tr>
+<tr><td class="c">표면연소</td><td>고체 표면에서 직접 산화. 숯, 목탄, 코크스, 금속분</td></tr>
+<tr><td class="c">분해연소</td><td>열분해 가스가 연소. 목재, 석탄, 종이, 플라스틱</td></tr>
+<tr><td class="c">증발연소</td><td>증발한 증기가 연소. 황, 나프탈렌, 양초, 휘발유 등 제4류</td></tr>
+<tr><td class="c">자기연소</td><td>분자 내 산소로 연소(내부연소). 제5류 — 나이트로화합물 등</td></tr></table>
+<h3>인화점·발화점·연소점</h3>
+<ul>
+<li><b>인화점</b>: 점화원으로 불이 붙는 최저온도(위험성 척도, 낮을수록 위험).</li>
+<li><b>발화점(착화점)</b>: 점화원 없이 스스로 발화하는 최저온도.</li>
+<li><b>연소점</b>: 인화 후 연소가 지속되는 온도(보통 인화점보다 약 5~10℃ 높음).</li>
+</ul>
+<h3>폭발범위·위험도</h3>
+<div class="formula">위험도 H = (U − L) / L　(U 폭발상한, L 폭발하한)</div>
+<div class="formula">르샤틀리에(혼합가스 폭발하한): 100/L = V₁/L₁ + V₂/L₂ + …</div>
+<div class="note">하한이 낮고 범위가 넓을수록 위험. 예) 아세틸렌 2.5~81%로 위험도 매우 큼.</div>
+`},
+
+{n:3,t:`소화방법 — 소화원리와 소화약제`,html:`
+<h3>소화의 4원리</h3>
+<table><tr><th>소화</th><th>원리</th></tr>
+<tr><td class="c">제거소화</td><td>가연물 제거(연료 차단)</td></tr>
+<tr><td class="c">질식소화</td><td>산소 차단(농도 약 15% 이하). 포·CO₂·분말·마른모래</td></tr>
+<tr><td class="c">냉각소화</td><td>발화점 이하로 온도 저하. 물(증발잠열 큼)</td></tr>
+<tr><td class="c">억제(부촉매)</td><td>연쇄반응 차단. 할론·분말(화학적 소화)</td></tr></table>
+<h3>분말소화약제</h3>
+<table><tr><th class="c">종별</th><th>주성분</th><th class="c">착색</th><th class="c">적응</th></tr>
+<tr><td class="c">제1종</td><td>탄산수소나트륨 NaHCO₃</td><td class="c">백색</td><td class="c">B·C</td></tr>
+<tr><td class="c">제2종</td><td>탄산수소칼륨 KHCO₃</td><td class="c">담회(자)색</td><td class="c">B·C</td></tr>
+<tr><td class="c">제3종</td><td>제1인산암모늄 NH₄H₂PO₄</td><td class="c">담홍색</td><td class="c"><b class="key">A·B·C</b></td></tr>
+<tr><td class="c">제4종</td><td>탄산수소칼륨+요소 KHCO₃+(NH₂)₂CO</td><td class="c">회(백)색</td><td class="c">B·C</td></tr></table>
+<div class="note">제3종(인산암모늄)만 A급(일반)까지 적응 → 가장 널리 쓰임. 열분해: NH₄H₂PO₄ → HPO₃ + NH₃ + H₂O, 잔류 메타인산(HPO₃)이 방진(차단) 효과.</div>
+<h3>주요 소화약제 반응</h3>
+<ul>
+<li>제1종 분말: 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂↑</li>
+<li>CO₂ 소화: 질식(+약간 냉각). 전기화재(C급)·유류(B급)에 적합, 약제 손실 없음.</li>
+</ul>
+<div class="warn">물 사용 금지: 제3류 금수성, 제1류 무기과산화물(알칼리금속과산화물), 제2류 철분·금속분·마그네슘 → 물과 반응해 O₂ 또는 H₂ 발생. <b>마른모래·팽창질석·팽창진주암</b>으로 질식소화.</div>
+`},
+
+{n:4,t:`소방시설 — 소요단위·능력단위`,html:`
+<h3>소요단위(1 소요단위 기준)</h3>
+<table><tr><th>구분</th><th class="c">내화구조</th><th class="c">비내화구조</th></tr>
+<tr><td>제조소·취급소(연면적)</td><td class="c"><b class="key">100㎡</b></td><td class="c">50㎡</td></tr>
+<tr><td>저장소(연면적)</td><td class="c"><b class="key">150㎡</b></td><td class="c">75㎡</td></tr>
+<tr><td>위험물</td><td class="c" colspan="2"><b class="key">지정수량 10배 = 1 소요단위</b></td></tr></table>
+<h3>능력단위 (간이소화용구)</h3>
+<table><tr><th>기구</th><th class="c">능력단위</th></tr>
+<tr><td>마른모래(삽 1개 포함) 50L</td><td class="c">0.5</td></tr>
+<tr><td>팽창질석·팽창진주암(삽 포함) 160L</td><td class="c">1.0</td></tr>
+<tr><td>소화전용 물통 8L</td><td class="c">0.3</td></tr></table>
+<div class="note">소화설비 분류: 옥내·옥외소화전, 스프링클러, 물분무등(물분무·포·CO₂·할로겐·분말), 대형·소형 수동식소화기, 간이소화용구.</div>
+`},
+
+{n:5,t:`위험물의 지정수량 ★ (전류 총정리)`,html:`
+<p>위험등급 <b>I</b>(가장 위험)·II·III 구분과 함께 암기. 가장 빈출 표.</p>
+<table>
+<tr><th class="c">류</th><th>품명</th><th class="c">지정수량</th><th class="c">등급</th></tr>
+<tr><td class="c" rowspan="3"><b>제1류</b><br>산화성<br>고체</td><td>아염소산·염소산·과염소산염류, 무기과산화물</td><td class="c"><b class="key">50kg</b></td><td class="c">I</td></tr>
+<tr><td>브로민산·질산·아이오딘산염류</td><td class="c">300kg</td><td class="c">II</td></tr>
+<tr><td>과망가니즈산·다이크로뮴산염류</td><td class="c">1,000kg</td><td class="c">III</td></tr>
+<tr><td class="c" rowspan="3"><b>제2류</b><br>가연성<br>고체</td><td>황화인·적린·황(유황)</td><td class="c">100kg</td><td class="c">II</td></tr>
+<tr><td>철분·금속분·마그네슘</td><td class="c">500kg</td><td class="c">III</td></tr>
+<tr><td>인화성고체</td><td class="c">1,000kg</td><td class="c">III</td></tr>
+<tr><td class="c" rowspan="4"><b>제3류</b><br>자연발화성<br>·금수성</td><td>칼륨·나트륨·알킬알루미늄·알킬리튬</td><td class="c"><b class="key">10kg</b></td><td class="c">I</td></tr>
+<tr><td>황린</td><td class="c">20kg</td><td class="c">I</td></tr>
+<tr><td>알칼리금속·알칼리토금속·유기금속화합물</td><td class="c">50kg</td><td class="c">II</td></tr>
+<tr><td>금속수소화물·금속인화물·Ca·Al 탄화물</td><td class="c">300kg</td><td class="c">III</td></tr>
+<tr><td class="c" rowspan="7"><b>제4류</b><br>인화성<br>액체</td><td>특수인화물</td><td class="c"><b class="key">50L</b></td><td class="c">I</td></tr>
+<tr><td>제1석유류(비수용 200 / 수용 400)</td><td class="c">200·400L</td><td class="c">II</td></tr>
+<tr><td>알코올류</td><td class="c">400L</td><td class="c">II</td></tr>
+<tr><td>제2석유류(비수용 1,000 / 수용 2,000)</td><td class="c">1,000·2,000L</td><td class="c">III</td></tr>
+<tr><td>제3석유류(비수용 2,000 / 수용 4,000)</td><td class="c">2,000·4,000L</td><td class="c">III</td></tr>
+<tr><td>제4석유류</td><td class="c">6,000L</td><td class="c">III</td></tr>
+<tr><td>동식물유류</td><td class="c">10,000L</td><td class="c">III</td></tr>
+<tr><td class="c"><b>제5류</b><br>자기반응성</td><td>유기과산화물·질산에스터·나이트로화합물 등<br>(제1종 10kg / 제2종 100kg)</td><td class="c">10·100kg</td><td class="c">I·II</td></tr>
+<tr><td class="c"><b>제6류</b><br>산화성액체</td><td>과염소산·과산화수소·질산</td><td class="c">300kg</td><td class="c">I</td></tr>
+</table>
+<h3>게시판·주의사항</h3>
+<ul>
+<li>제조소 게시판: 백색바탕 흑색문자(유별·품명·수량·안전관리자).</li>
+<li><span class="tag red">화기엄금</span> 적색바탕 백색문자 — 제2류 인화성고체, 제3류 자연발화성, 제4류, 제5류.</li>
+<li><span class="tag red">화기주의</span> 적색바탕 백색문자 — 제2류(인화성고체 제외).</li>
+<li><span class="tag blue">물기엄금</span> 청색바탕 백색문자 — 제1류 알칼리금속과산화물, 제3류 금수성.</li>
+<li>주유취급소: <span class="tag">주유중엔진정지</span> 황색바탕 흑색문자.</li>
+</ul>
+`},
+
+{n:6,t:`중요 화학반응식 (암기 필수)`,html:`
+<h3>물과의 반응(금수성)</h3>
+<ul>
+<li>나트륨: 2Na + 2H₂O → 2NaOH + H₂↑</li>
+<li>칼륨: 2K + 2H₂O → 2KOH + H₂↑</li>
+<li>탄화칼슘(카바이드): CaC₂ + 2H₂O → Ca(OH)₂ + <b>C₂H₂</b>↑ (아세틸렌)</li>
+<li>탄화알루미늄: Al₄C₃ + 12H₂O → 4Al(OH)₃ + 3<b>CH₄</b>↑ (메탄)</li>
+<li>인화칼슘: Ca₃P₂ + 6H₂O → 3Ca(OH)₂ + 2<b>PH₃</b>↑ (포스핀)</li>
+<li>과산화나트륨: 2Na₂O₂ + 2H₂O → 4NaOH + <b>O₂</b>↑</li>
+</ul>
+<h3>연소 반응</h3>
+<ul>
+<li>황: S + O₂ → SO₂</li>
+<li>적린/황린: 4P + 5O₂ → 2P₂O₅ (백색 연기)</li>
+<li>이황화탄소: CS₂ + 3O₂ → CO₂ + 2SO₂</li>
+<li>마그네슘: 2Mg + O₂ → 2MgO (CO₂ 속에서도 연소: 2Mg+CO₂→2MgO+C)</li>
+</ul>
+<h3>분해 반응</h3>
+<ul>
+<li>과산화수소: 2H₂O₂ → 2H₂O + O₂↑</li>
+<li>염소산칼륨: 2KClO₃ → 2KCl + 3O₂↑</li>
+<li>과염소산칼륨: KClO₄ → KCl + 2O₂↑</li>
+<li>질산암모늄: 2NH₄NO₃ → 2N₂ + O₂ + 4H₂O (폭발)</li>
+</ul>
+`},
+
+{n:7,t:`제1류 위험물 — 산화성 고체`,html:`
+<p>스스로는 불연성이나 <b>산소를 다량 함유</b>해 다른 물질의 연소를 강하게 도움(조연성·산화성).</p>
+<h3>성질·취급</h3>
+<ul>
+<li>가열·충격·마찰 금지, 가연물·환원제와 격리.</li>
+<li><b>무기과산화물(알칼리금속과산화물)</b>은 물과 반응해 O₂·열 발생 → <b>물 엄금</b>.</li>
+</ul>
+<h3>소화</h3>
+<div class="warn">원칙은 <b>다량의 물(냉각)</b>로 소화. 단, <b>무기과산화물(Na₂O₂·K₂O₂ 등)은 주수 금지</b> → 마른모래·팽창질석으로 질식소화.</div>
+<p>대표: 염소산칼륨 KClO₃, 과염소산칼륨 KClO₄, 과산화나트륨 Na₂O₂, 질산칼륨 KNO₃, 과망가니즈산칼륨 KMnO₄.</p>
+`},
+
+{n:8,t:`제2류 위험물 — 가연성 고체`,html:`
+<p>낮은 온도에서 착화하기 쉬운 가연성 고체, 연소속도 빠름. <b>환원성</b> 물질.</p>
+<h3>성질·취급</h3>
+<ul>
+<li>산화제(제1·6류)와 격리, 점화원 금지.</li>
+<li><b>철분·금속분·마그네슘</b>은 물·산과 반응해 H₂ 발생 → 물 엄금.</li>
+<li>황(유황)은 순도 60wt% 이상만 위험물. 분진폭발 주의.</li>
+</ul>
+<h3>소화</h3>
+<div class="warn">철분·금속분·마그네슘: <b>마른모래</b> 등 질식소화(주수 금지). 적린·황 등 그 밖의 것은 <b>다량의 물</b> 냉각소화 가능.</div>
+<p>대표: 황화인(P₄S₃·P₂S₅), 적린 P, 황 S, 철분 Fe, 마그네슘 Mg.</p>
+`},
+
+{n:9,t:`제3류 위험물 — 자연발화성·금수성`,html:`
+<p>공기 중 자연발화(자연발화성)하거나 물과 접촉 시 발화·가연성가스 발생(금수성).</p>
+<h3>성질·취급</h3>
+<ul>
+<li>칼륨·나트륨·알킬알루미늄: <b>석유(등유·경유) 속에 저장</b>(보호액).</li>
+<li><b>황린</b>은 예외적으로 자연발화성만 있어 <b>물속(pH9 약알칼리)에 저장</b>, 발화점 약 34℃로 매우 낮음.</li>
+</ul>
+<h3>소화</h3>
+<div class="warn">금수성 → <b>물 절대 금지</b>. 마른모래·팽창질석·팽창진주암, 금속화재용 분말(탄산수소염류). 황린은 물·포로 소화 가능.</div>
+<p>대표: 칼륨 K, 나트륨 Na, 알킬알루미늄, 황린 P₄, 탄화칼슘 CaC₂, 인화칼슘 Ca₃P₂.</p>
+`},
+
+{n:10,t:`제4류 위험물 — 인화성 액체`,html:`
+<p>인화점이 낮은 액체. 증기비중 > 1(대부분 공기보다 무거움) → <b>낮은 곳에 체류</b>. 비수용성은 물보다 가벼워 물 위에 뜸.</p>
+<h3>석유류 구분(인화점)</h3>
+<table><tr><th>품명</th><th>인화점 기준</th><th class="c">지정수량</th></tr>
+<tr><td>특수인화물</td><td>발화점 100℃ 이하 또는 인화점 −20℃ 이하·비점 40℃ 이하</td><td class="c">50L</td></tr>
+<tr><td>제1석유류</td><td>인화점 21℃ 미만 (휘발유·아세톤)</td><td class="c">200·400L</td></tr>
+<tr><td>알코올류</td><td>C1~C3 포화1가알코올(메탄올·에탄올)</td><td class="c">400L</td></tr>
+<tr><td>제2석유류</td><td>21℃ 이상 70℃ 미만 (등유·경유)</td><td class="c">1,000·2,000L</td></tr>
+<tr><td>제3석유류</td><td>70℃ 이상 200℃ 미만 (중유·크레오소트유)</td><td class="c">2,000·4,000L</td></tr>
+<tr><td>제4석유류</td><td>200℃ 이상 250℃ 미만 (기어유·실린더유)</td><td class="c">6,000L</td></tr>
+<tr><td>동식물유류</td><td>1기압 인화점 250℃ 미만</td><td class="c">10,000L</td></tr></table>
+<h3>소화</h3>
+<div class="warn"><b>질식소화</b>가 기본: 포·CO₂·분말·할론. 물은 비수용성에 부적합(연소면 확대). 수용성(알코올 등)에는 <b>알코올포(내알코올포)</b> 사용.</div>
+<div class="note">동식물유류 아이오딘값 ≥130 = 건성유(자연발화 위험: 아마인유·들기름).</div>
+`},
+
+{n:11,t:`제5류 위험물 — 자기반응성 물질`,html:`
+<p>분자 내에 산소를 함유 → <b>자기연소(내부연소)</b>. 가열·충격·마찰로 폭발, 연소속도 매우 빠름.</p>
+<h3>성질·취급</h3>
+<ul>
+<li>장기저장 시 자연발화·분해 주의, 운반용기에 충격 금지.</li>
+<li>나이트로글리세린·나이트로셀룰로스(질화면)는 건조 시 위험 → 함수·알코올 습면 저장.</li>
+</ul>
+<h3>소화</h3>
+<div class="warn">자체 산소 보유로 질식소화 효과 없음 → <b>다량의 물(냉각)</b>로 초기소화. 소량일 때만 유효.</div>
+<p>대표: 유기과산화물(과산화벤조일), 질산에스터류(나이트로글리세린·나이트로셀룰로스), 나이트로화합물(TNT·피크르산), 아조·다이아조화합물.</p>
+`},
+
+{n:12,t:`제6류 위험물 — 산화성 액체`,html:`
+<p>불연성이나 강산화제, 다른 가연물의 연소 촉진. 대부분 강산성·부식성, 물과 접촉 시 발열.</p>
+<h3>성질·취급</h3>
+<ul>
+<li>과산화수소: 농도 36wt% 이상이 위험물. 분해 억제 안정제(인산·요산) 첨가, 갈색병 보관.</li>
+<li>질산: 비중 1.49 이상이 위험물. 진한질산은 Fe·Al 부동태.</li>
+</ul>
+<h3>소화</h3>
+<div class="warn">소량은 <b>다량의 물</b>로 희석, 마른모래. 유출 시 중화·희석. 가연물 접촉주의.</div>
+<p>대표: 과염소산 HClO₄, 과산화수소 H₂O₂, 질산 HNO₃.</p>
+`},
+
+{n:13,t:`제조소의 위치·구조·설비 ①`,html:`
+<h3>안전거리 (제조소·일반취급소 등)</h3>
+<table><tr><th>대상</th><th class="c">거리</th></tr>
+<tr><td>주거용</td><td class="c">10m 이상</td></tr>
+<tr><td>학교·병원·극장(다수 수용)</td><td class="c"><b class="key">30m</b> 이상</td></tr>
+<tr><td>문화재</td><td class="c"><b class="key">50m</b> 이상</td></tr>
+<tr><td>고압가스·액화석유가스 시설</td><td class="c">20m 이상</td></tr>
+<tr><td>특고압가공전선 7,000~35,000V</td><td class="c">3m 이상</td></tr>
+<tr><td>특고압가공전선 35,000V 초과</td><td class="c">5m 이상</td></tr></table>
+<h3>보유공지 (제조소)</h3>
+<table><tr><th>취급 수량</th><th class="c">공지 너비</th></tr>
+<tr><td>지정수량 10배 이하</td><td class="c">3m 이상</td></tr>
+<tr><td>지정수량 10배 초과</td><td class="c">5m 이상</td></tr></table>
+`},
+
+{n:14,t:`제조소의 위치·구조·설비 ②`,html:`
+<ul>
+<li><b>건축물</b>: 벽·기둥·바닥·보·서까래·계단은 불연재료, 연소우려 외벽은 내화구조. 지붕은 가벼운 불연재료.</li>
+<li><b>채광·조명·환기설비</b> 설치. 가연성증기 체류 우려 시 배출설비.</li>
+<li><b>바닥</b>: 위험물 침투 방지(콘크리트 등), 적당한 경사 + 집유설비.</li>
+<li>지정수량 10배 이상이면 <b>피뢰설비</b> 설치(제6류 제외).</li>
+</ul>
+<h3>방유제(옥외 취급탱크)</h3>
+<ul>
+<li>탱크 1기: 탱크 용량의 <b>50% 이상</b>.</li>
+<li>탱크 2기 이상: 최대탱크 용량의 50% + 나머지 합계의 10% 이상.</li>
+</ul>
+`},
+
+{n:15,t:`제조소의 위치·구조·설비 ③ (정전기·환기)`,html:`
+<h3>정전기 제거</h3>
+<ul>
+<li>접지(어스), 공기 중 상대습도 <b class="key">70% 이상</b> 유지, 공기 이온화.</li>
+</ul>
+<h3>환기·배출설비</h3>
+<ul>
+<li>환기는 자연배기방식. 급기구는 바닥면적 150㎡마다 1개 이상, 크기 800㎠ 이상.</li>
+<li>가연성 증기·미분이 체류할 우려가 있는 장소엔 <b>국소방식 배출설비</b>(배출능력=1시간당 배출장소 용적의 20배 이상).</li>
+</ul>
+`},
+
+{n:16,t:`위험물의 저장 기준`,html:`
+<ul>
+<li>유별이 다른 위험물은 원칙적으로 동일 저장소에 혼재 금지(예외 일부 허용).</li>
+<li>제3류 자연발화성(황린 등)은 불활성기체 봉입 또는 보호액 속 저장.</li>
+</ul>
+<h3>저장창고 온도·옥내저장소</h3>
+<ul>
+<li>옥내저장소 용기 적재 높이: 기계하역 6m, 제4류 제3·4석유류·동식물유류 4m, 그 밖 3m 이하.</li>
+<li>같은 유별 위험물끼리 0.3m 이상 간격.</li>
+</ul>
+<h3>탱크 공간용적</h3>
+<div class="formula">일반 탱크: 용량 = 탱크 내용적 − 공간용적(내용적의 <b class="key">5~10%</b>)</div>
+<div class="formula">암반탱크: 공간용적 = ⓐ7일간 용출량 ×7 과 ⓑ내용적의 1% 중 <b>큰 값</b></div>
+<p>소화설비(포 등) 설치 탱크: 소화약제 방출구 아래 0.3~1m 사이 면 위를 공간용적으로.</p>
+`},
+
+{n:17,t:`위험물의 취급 기준`,html:`
+<ul>
+<li><b>제조</b>: 증류·추출·건조·분쇄 공정별 위험 방지 조치.</li>
+<li><b>소비</b>: 분사도장은 방화상 유효한 격벽, 버너 사용 시 역화 방지.</li>
+<li><b>주입</b>: 이동저장탱크 주입 시 정전기 제거, 인화점 40℃ 미만은 원동기 정지.</li>
+</ul>
+<div class="note">위험물 운반·이송·취급 모든 단계에서 점화원·정전기·과열 방지가 핵심.</div>
+`},
+
+{n:18,t:`위험물의 운반 기준 ★`,html:`
+<h3>운반용기 수납률</h3>
+<table><tr><th>구분</th><th class="c">수납률</th></tr>
+<tr><td>고체</td><td class="c"><b class="key">95%</b> 이하</td></tr>
+<tr><td>액체</td><td class="c"><b class="key">98%</b> 이하 (55℃에서 누설 없도록 공간 유지)</td></tr>
+<tr><td>알킬알루미늄 등</td><td class="c">90% 이하(50℃에서 5% 이상 공간)</td></tr></table>
+<h3>혼재 가능(지정수량 1/10 초과 시)</h3>
+<table><tr><th></th><th class="c">1류</th><th class="c">2류</th><th class="c">3류</th><th class="c">4류</th><th class="c">5류</th><th class="c">6류</th></tr>
+<tr><th class="c">1류</th><td class="c">–</td><td class="c">✕</td><td class="c">✕</td><td class="c">✕</td><td class="c">✕</td><td class="c">○</td></tr>
+<tr><th class="c">2류</th><td class="c">✕</td><td class="c">–</td><td class="c">✕</td><td class="c">○</td><td class="c">○</td><td class="c">✕</td></tr>
+<tr><th class="c">3류</th><td class="c">✕</td><td class="c">✕</td><td class="c">–</td><td class="c">○</td><td class="c">✕</td><td class="c">✕</td></tr>
+<tr><th class="c">4류</th><td class="c">✕</td><td class="c">○</td><td class="c">○</td><td class="c">–</td><td class="c">○</td><td class="c">✕</td></tr>
+<tr><th class="c">5류</th><td class="c">✕</td><td class="c">○</td><td class="c">✕</td><td class="c">○</td><td class="c">–</td><td class="c">✕</td></tr>
+<tr><th class="c">6류</th><td class="c">○</td><td class="c">✕</td><td class="c">✕</td><td class="c">✕</td><td class="c">✕</td><td class="c">–</td></tr></table>
+<div class="note">암기: <b>4류↔2·3·5류</b> 가능, <b>1류↔6류</b> 가능, <b>5류↔2·4류</b> 가능. (4와 2·3·5 / 5와 2·4 / 6과 1)</div>
+`},
+
+{n:19,t:`소화난이도등급 I (제조소 등·소화설비)`,html:`
+<p>제조소·일반취급소 중 연면적 1,000㎡ 이상, 지정수량 100배 이상 등 규모가 큰 시설이 <b>등급 I</b>.</p>
+<ul>
+<li>옥외탱크저장소(지중·해상 제외): 지정수량 100배 이상 또는 액표면적 40㎡ 이상 등.</li>
+<li>등급 I에는 <b>옥내·옥외소화전, 스프링클러, 물분무등 소화설비</b> 등 능력 큰 설비 요구.</li>
+</ul>
+`},
+
+{n:20,t:`소화난이도등급 II·III`,html:`
+<ul>
+<li><b>등급 II</b>: 등급 I보다 작은 규모. 대형수동식소화기 + 소형수동식소화기 등.</li>
+<li><b>등급 III</b>: 소규모. 소형수동식소화기 등으로 능력단위 충족.</li>
+<li>지하탱크·이동탱크·간이탱크 등은 별도 기준의 소화설비.</li>
+</ul>
+`},
+
+{n:21,t:`소화설비의 적응성·능력단위 정리`,html:`
+<ul>
+<li>전기설비(C급): 면적 100㎡마다 소형소화기 1개 이상.</li>
+<li>소화전(옥내): 방수압력 350kPa 이상, 방수량 260L/min 이상, 수원 7.8㎥×설치개수(최대5).</li>
+<li>옥외소화전: 방수압력 350kPa 이상, 방수량 450L/min 이상, 수원 13.5㎥×개수(최대4).</li>
+</ul>
+<div class="note">물분무등 = 물분무·포·불활성가스(CO₂)·할로겐화합물·분말 소화설비.</div>
+`},
+
+{n:22,t:`경보설비`,html:`
+<p>지정수량 <b class="key">10배 이상</b> 저장·취급 시설(이동탱크 제외)은 경보설비 설치.</p>
+<ul>
+<li>종류: 자동화재탐지설비, 비상경보설비, 비상방송설비, 확성장치, 자동화재속보설비.</li>
+<li>제조소·일반취급소·옥내저장소 등 일정 규모 이상은 <b>자동화재탐지설비</b> 필수.</li>
+</ul>
+`},
+
+{n:23,t:`피난설비`,html:`
+<ul>
+<li>주유취급소 중 건축물 2층 이상을 점포·휴게음식점 등으로 사용하는 경우 → <b>유도등</b> 설치.</li>
+<li>옥내주유취급소의 피난 통로·출입구 유도등.</li>
+</ul>
+`},
+
+{n:24,t:`소화설비 설치 기준(수원·방사)`,html:`
+<ul>
+<li>스프링클러: 방사밀도·수원량 기준 충족, 개방형/폐쇄형.</li>
+<li>포소화설비: 고정식·이동식, 발포배율·환원시간 기준.</li>
+<li>불활성가스(CO₂)·할로겐: 전역방출·국소방출 방식, 분사헤드 방사압·시간 기준.</li>
+</ul>
+`},
+
+{n:25,t:`위험물 제조소의 표지·게시판`,html:`
+<ul>
+<li>표지: "위험물 제조소" 백색바탕 흑색문자, 한 변 0.3m × 0.6m 이상.</li>
+<li>방화에 관한 게시판: 유별·품명·최대수량·지정수량 배수·안전관리자 성명.</li>
+<li>주의사항 게시판(색상은 요점 5 참조): 물기엄금(청)·화기주의·화기엄금(적).</li>
+</ul>
+`},
+
+{n:26,t:`옥내저장소의 시설기준`,html:`
+<ul>
+<li>독립된 전용 건축물(단층 원칙), 처마높이 6m 미만, 바닥면적 1,000㎡ 이하.</li>
+<li>벽·기둥·바닥 내화구조, 지붕 가벼운 불연재료, 출입구 갑종(또는 을종)방화문.</li>
+<li>지정수량 10배 이상이면 안전거리·보유공지 확보.</li>
+</ul>
+<h3>옥내저장소 보유공지(예)</h3>
+<table><tr><th>지정수량 배수</th><th class="c">내화구조</th></tr>
+<tr><td>5배 이하</td><td class="c">없음(0.5m 등)</td></tr>
+<tr><td>20배 초과 50배 이하</td><td class="c">3m 이상</td></tr>
+<tr><td>200배 초과</td><td class="c">10m 이상</td></tr></table>
+`},
+
+{n:27,t:`옥외저장소의 시설기준`,html:`
+<ul>
+<li>저장 가능: 제2류(황·인화성고체 중 인화점 0℃ 이상)·제4류(제1석유류 중 인화점 0℃ 이상~, 알코올류·제2~4석유류·동식물유류)·제6류 일부. <b>특수인화물·제1석유류(인화점 0℃ 미만)은 불가.</b></li>
+<li>경계표시(울타리)로 구획, 보유공지 확보.</li>
+<li>선반(가대) 높이 6m 이하.</li>
+</ul>
+`},
+
+{n:28,t:`옥내탱크저장소의 시설기준`,html:`
+<ul>
+<li>단층 건축물의 탱크전용실에 설치(원칙).</li>
+<li>탱크 용량: 지정수량 <b class="key">40배 이하</b>(제4석유류·동식물유류 제외, 4류 중 제2~4석유류는 20,000L 이하).</li>
+<li>탱크와 벽·탱크 상호간 0.5m 이상 간격, 탱크전용실 출입구 문턱(방유턱).</li>
+</ul>
+`},
+
+{n:29,t:`옥외탱크저장소의 시설기준 ★`,html:`
+<h3>방유제</h3>
+<ul>
+<li>용량: 탱크 1기 → 탱크용량의 <b class="key">110% 이상</b>(인화성 없는 위험물은 100%). 2기 이상 → 최대탱크 용량의 110% 이상.</li>
+<li>높이 0.5~3m, 면적 80,000㎡ 이하, 하나의 방유제 내 탱크 10기 이하(원칙).</li>
+<li>방유제와 탱크 옆판 사이 거리: 지름에 따라 1/2 또는 1/3 이상.</li>
+</ul>
+<h3>보유공지</h3>
+<table><tr><th>지정수량 배수</th><th class="c">공지</th></tr>
+<tr><td>500배 이하</td><td class="c">3m 이상</td></tr>
+<tr><td>1,000배 이하</td><td class="c">5m 이상</td></tr>
+<tr><td>2,000배 이하</td><td class="c">9m 이상</td></tr></table>
+`},
+
+{n:30,t:`지하탱크저장소의 시설기준`,html:`
+<ul>
+<li>탱크전용실 콘크리트 구조에 설치, 탱크 윗부분이 지면에서 0.6m 이상 아래.</li>
+<li>탱크와 전용실 벽 0.1m 이상 간격, 주위는 마른모래·자갈 채움.</li>
+<li>탱크 상호간 1m 이상(용량 합 지정수량 100배 이하면 0.5m).</li>
+<li><b>누유검사관(누설검사관) 4곳 이상</b> 설치.</li>
+</ul>
+`},
+
+{n:31,t:`간이탱크저장소의 시설기준`,html:`
+<ul>
+<li>1기 용량 <b class="key">600L 이하</b>, 하나의 간이탱크저장소에 탱크 3기 이하(동일 품질은 2기 불가).</li>
+<li>탱크 두께 3.2mm 이상 강판, 70kPa 압력으로 10분간 수압시험.</li>
+<li>옥외 설치 시 탱크 주위 1m 이상 공지.</li>
+</ul>
+`},
+
+{n:32,t:`이동탱크저장소의 시설기준`,html:`
+<ul>
+<li>탱크 본체 두께 3.2mm 이상 강판, 칸막이로 4,000L 이하마다 구획.</li>
+<li>방파판·방호틀·측면틀 설치, 안전장치(상용압력 20kPa 이하는 20~24kPa에서 작동).</li>
+<li>접지도선(제4류 특수인화물·제1·2석유류), 주입설비 분당 200L 이하.</li>
+<li>표지: 흑색바탕 황색반사 "위험물".</li>
+</ul>
+`},
+
+{n:33,t:`주유취급소의 시설기준 ★`,html:`
+<ul>
+<li>주유공지: 너비 <b class="key">15m 이상</b>, 길이 6m 이상 콘크리트 포장.</li>
+<li>전용탱크 50,000L 이하, 폐유탱크 2,000L 이하, 고정주유설비 펌프 분당 50L 이하(경유 180L).</li>
+<li>고정주유설비 ↔ 도로경계선 4m 이상, 부지경계·담 2m 이상, 건축물 벽 2m(개구부 없는 벽은 1m) 이상.</li>
+<li>"주유중엔진정지"(황색바탕 흑색), 담 또는 벽 2m 이상.</li>
+</ul>
+`},
+
+{n:34,t:`판매취급소의 시설기준`,html:`
+<ul>
+<li><b>제1종 판매취급소</b>: 지정수량 <b class="key">20배 이하</b> — 건축물 1층에 설치.</li>
+<li><b>제2종 판매취급소</b>: 지정수량 <b class="key">40배 이하</b> — 벽·기둥·바닥·보 내화구조 강화.</li>
+<li>위험물 배합실: 바닥면적 6~15㎡, 내화구조 벽, 0.1m 이상 문턱, 집유설비.</li>
+</ul>
+`},
+
+{n:35,t:`이송취급소의 시설기준`,html:`
+<ul>
+<li>배관으로 위험물을 이송하는 취급소(송유관 등).</li>
+<li>배관: 안전거리·내압시험(최대상용압력 1.25배 이상), 부식방지, 누설확산방지.</li>
+<li>긴급차단밸브·압력안전장치·경보설비·비상전원 설치, 순찰·점검 의무.</li>
+</ul>
+<div class="note">설치 불가 장소: 철도·도로 터널 안, 고속국도·자동차전용도로 차도·길어깨·중앙분리대, 호수·저수지(원칙) 등.</div>
+`}
+];
+
+/* ---- render ---- */
+const toc=document.getElementById('toc');
+const content=document.getElementById('content');
+ITEMS.forEach(it=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<a href="#i${it.n}">${it.n}. ${it.t.replace(/ ★/,'')}</a>`;
+  toc.appendChild(li);
+  const sec=document.createElement('section');
+  sec.className='item'; sec.id='i'+it.n; sec.dataset.text=(it.t+' '+it.html).replace(/<[^>]+>/g,'').toLowerCase();
+  sec.innerHTML=`<h2><span class="no">${it.n}</span>${it.t}</h2>${it.html}`;
+  content.appendChild(sec);
+});
+
+/* search filter */
+const search=document.getElementById('search');
+search.addEventListener('input',()=>{
+  const q=search.value.trim().toLowerCase();
+  document.querySelectorAll('section.item').forEach(s=>{
+    s.classList.toggle('hide', q && !s.dataset.text.includes(q));
+  });
+});
+document.getElementById('clear').addEventListener('click',()=>{
+  search.value='';
+  document.querySelectorAll('section.item').forEach(s=>s.classList.remove('hide'));
+  search.focus();
+});
+document.getElementById('expand').addEventListener('click',()=>{
+  search.value='';
+  document.querySelectorAll('section.item').forEach(s=>s.classList.remove('hide'));
+});
+</script>
+</body>
+</html>
