@@ -20,6 +20,10 @@ index.html                  ← 전체 허브 (과목 선택)
 │   ├─ 01-topics.html       토론주제 정리
 │   ├─ 02-history.html      역사순 정리
 │   └─ 04-quiz.html         객관식 30문항
+├─ automotive/              미래자동차공학
+│   ├─ index.html           과목 허브
+│   ├─ 01-notes.html        교재 전체 정리 (HT1 EV · HT2 배터리)
+│   └─ 02-qna.html          기출 QnA 해설 + 예상문제 19문항
 └─ digital/                 디지털 시대의 기록
     ├─ index.html           과목 허브
     ├─ 03-summary.html      꼭 나올 핵심 개념 요약
